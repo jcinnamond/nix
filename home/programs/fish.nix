@@ -1,0 +1,36 @@
+{ pkgs, ... }:
+{
+  programs.fish = {
+    enable = true;
+    interactiveShellInit = ''
+      set fish_greeting ;
+      ${pkgs.any-nix-shell}/bin/any-nix-shell fish --info-right | source
+    '';
+    shellAbbrs = {
+      dev = "nix develop";
+      ns = "nix search nixpkgs";
+      rebuild = "sudo nixos-rebuild --flake ~/nixos switch";
+    };
+    functions = {
+      fish_prompt = ''
+        set -l nix_shell_info (
+          if test -n "$IN_NIX_SHELL"
+             printf "%snix-shell >> %s " (set_color $fish_color_comment) (set_color normal)
+          end
+        )
+        set -l jobs (jobs | wc -l)
+        set -l jobs_info (
+          if test $jobs -ne 0
+            printf "[%s] " $jobs
+          end
+        )
+        string join "" -- $jobs_info $nix_shell_info (prompt_pwd) ' > '
+      '';
+      fish_right_prompt = ''
+        set -g __fish_git_prompt_showdirtystate true
+        set -g __fish_git_prompt_showuntrackedfiles true
+        string join "" -- (set_color $fish_color_comment) (fish_git_prompt)
+      '';
+    };
+  };
+}

@@ -4,12 +4,15 @@
     enable = true;
     interactiveShellInit = ''
       set fish_greeting ;
-      ${pkgs.any-nix-shell}/bin/any-nix-shell fish --info-right | source
     '';
     shellAbbrs = {
       dev = "nix develop";
       ns = "nix search nixpkgs";
-      rebuild = "sudo nixos-rebuild --flake ~/nixos switch";
+      nsh = {
+        setCursor = true;
+        expansion = "nix shell nixpkgs#%";
+      };
+      nixup = "sudo nixos-rebuild --flake ~/nixos switch";
     };
     functions = {
       fish_prompt = ''
@@ -29,7 +32,7 @@
       fish_right_prompt = ''
         set -g __fish_git_prompt_showdirtystate true
         set -g __fish_git_prompt_showuntrackedfiles true
-        string join "" -- (set_color $fish_color_comment) (fish_git_prompt)
+        string join "" -- (set_color $fish_color_cwd) (fish_git_prompt)
       '';
     };
   };

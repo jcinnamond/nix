@@ -165,6 +165,9 @@ in
         package = pkgs.noto-fonts-emoji;
         name = "Noto Color Emoji";
       };
+      sizes.desktop = 10;
+      sizes.applications = 10;
+      sizes.terminal = 12;
     };
   };
 

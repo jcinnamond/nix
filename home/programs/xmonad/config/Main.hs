@@ -98,10 +98,10 @@ theme config =
         }
 
 focusedColor :: String
-focusedColor = "#b4befe"
+focusedColor = "#5f8787"
 
 inactiveColor :: String
-inactiveColor = "#45475a"
+inactiveColor = "#000000"
 
 myLayout = windowNavigation $ avoidStruts $ maximizeWithPadding 0 $ spaceWindows $ boringWindows layouts
   where

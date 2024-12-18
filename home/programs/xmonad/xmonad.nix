@@ -26,8 +26,6 @@
     };
   };
 
-  xdg.configFile."backgrounds/background.png".source = ./background.png;
-
   services.picom = {
     enable = true;
     backend = "xrender";

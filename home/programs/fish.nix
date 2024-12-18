@@ -17,7 +17,7 @@
     functions = {
       fish_prompt = ''
         set -l nix_shell_info (
-          if test -n "$IN_NIX_SHELL"
+          if test -n "$IN_NIX_SHELL" || test $SHLVL -gt 2 # for some reason SHLVL seems to be 2 for a normal shell
              printf "%snix-shell >> %s " (set_color $fish_color_comment) (set_color normal)
           end
         )

@@ -29,6 +29,7 @@ in
   home.packages = with pkgs; [
     any-nix-shell
     bat
+    feh
     gitu
     jq
     kitty

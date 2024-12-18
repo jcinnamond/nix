@@ -4,7 +4,6 @@
     enable = true;
     defaultEditor = true;
     settings = {
-      theme = "jc";
       editor.cursorline = true;
       editor.soft-wrap = {
         enable = true;

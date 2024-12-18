@@ -49,6 +49,7 @@ in
     libreoffice
     pavucontrol
     pdftk
+    playerctl
     signal-desktop
     simple-scan
     skypeforlinux

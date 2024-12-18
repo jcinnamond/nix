@@ -1,12 +1,7 @@
-{ pkgs, config, ... }:
+{ pkgs, ... }:
 
-let
-  configHome = config.xdg.configHome;
-in
 {
   home.packages = with pkgs; [
-    setroot
-    playerctl
     pulseaudio
     pasystray
     nautilus
@@ -18,7 +13,6 @@ in
     initExtra = ''
       ${pkgs.blueman}/bin/blueman-applet &
       ${pkgs.pasystray}/bin/pasystray &
-      ${pkgs.setroot}/bin/setroot -fw "${configHome}/backgrounds/background.png"
     '';
 
     windowManager.xmonad = {

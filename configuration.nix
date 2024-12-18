@@ -4,6 +4,12 @@
 
 { config, pkgs, ... }:
 
+let
+  monolisa-jc-typeface = pkgs.callPackage ./fonts/monolisa-jc/monolisa-jc.nix { };
+  monolisa-jc-nerdfont-typeface =
+    pkgs.callPackage ./fonts/monolisa-jc-nerdfont/monolisa-jc-nerdfont.nix
+      { };
+in
 {
   nix.settings.experimental-features = [
     "nix-command"
@@ -132,7 +138,34 @@
     base16-schemes
   ];
 
-  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/black/metal/venom.yaml";
+  fonts.packages = [
+    monolisa-jc-typeface
+    monolisa-jc-nerdfont-typeface
+  ];
+
+  stylix = {
+    enable = true;
+    image = ./wallpaper.png;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/black-metal-venom.yaml";
+    fonts = {
+      serif = {
+        package = pkgs.dejavu_fonts;
+        name = "DejaVu Serif";
+      };
+      sansSerif = {
+        package = pkgs.dejavu_fonts;
+        name = "DejaVu Sans";
+      };
+      monospace = {
+        package = monolisa-jc-nerdfont-typeface;
+        name = "MonolisaJc Nerd Font";
+      };
+      emoji = {
+        package = pkgs.noto-fonts-emoji;
+        name = "Noto Color Emoji";
+      };
+    };
+  };
 
   # Scanner
   hardware.sane = {

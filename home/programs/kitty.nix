@@ -1,8 +1,8 @@
-{ ... }:
+{ lib, ... }:
 {
   programs.kitty = {
     enable = true;
-    font.name = "MonoLisa jc";
+    font.name = lib.mkForce "MonoLisa jc";
     font.size = 12;
     shellIntegration.enableFishIntegration = true;
     keybindings = {

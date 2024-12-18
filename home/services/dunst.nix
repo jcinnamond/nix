@@ -9,7 +9,7 @@
         transparency = 5;
         padding = 8;
         horizontal_padding = 16;
-        font = "MonoLisaJc Nerd Font 10";
+        # font = "MonoLisaJc Nerd Font 10";
         line_height = 4;
         frame_width = 1;
         corner_radius = 15;

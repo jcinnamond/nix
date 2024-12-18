@@ -147,6 +147,7 @@ in
     enable = true;
     image = ./wallpaper.png;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/black-metal-venom.yaml";
+    opacity.popups = 0.95;
     fonts = {
       serif = {
         package = pkgs.dejavu_fonts;

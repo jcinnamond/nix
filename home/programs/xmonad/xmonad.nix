@@ -1,5 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
+let
+  colors = config.lib.stylix.colors.withHashtag;
+in
 {
   home.packages = with pkgs; [
     pulseaudio
@@ -23,6 +26,15 @@
         hp.monad-logger
       ];
       config = ./config/Main.hs;
+      libFiles = {
+        "Colors.hs" = pkgs.writeText "Colors.hs" ''
+          module Colors where
+          focusedColor :: String
+          focusedColor = "${colors.base0D}"
+          inactiveColor :: String
+          inactiveColor = "${colors.base03}"
+        '';
+      };
     };
   };
 

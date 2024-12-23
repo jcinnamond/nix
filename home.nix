@@ -48,6 +48,7 @@ in
 
     _1password-gui
     libreoffice
+    mpv
     pavucontrol
     pdftk
     playerctl

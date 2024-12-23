@@ -129,5 +129,8 @@ in
     extraConfig = {
       init.defaultBranch = "main";
     };
+    ignores = [
+      "dist-newstyle"
+    ];
   };
 }

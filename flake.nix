@@ -8,6 +8,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     stylix.url = "github:danth/stylix";
+
+    monolisa-jc.url = "path:/home/jc/fonts/monolisa-jc";
   };
 
   outputs =
@@ -15,11 +17,26 @@
       nixpkgs,
       stylix,
       home-manager,
+      monolisa-jc,
       ...
     }:
+    let
+      system = "x86_64-linux";
+
+      pkgs = import nixpkgs {
+        inherit system;
+        overlays = [
+          (final: prev: {
+            monolisa-jc = prev.callPackage "${monolisa-jc}" { };
+          })
+        ];
+        config.allowUnfree = true;
+      };
+    in
     {
       nixosConfigurations.nixie = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
+        inherit pkgs;
         modules = [
           ./configuration.nix
           home-manager.nixosModules.home-manager

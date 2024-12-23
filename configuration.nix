@@ -2,14 +2,11 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
-
-let
-  monolisa-jc-typeface = pkgs.callPackage ./fonts/monolisa-jc/monolisa-jc.nix { };
-  monolisa-jc-nerdfont-typeface =
-    pkgs.callPackage ./fonts/monolisa-jc-nerdfont/monolisa-jc-nerdfont.nix
-      { };
-in
+{
+  config,
+  pkgs,
+  ...
+}:
 {
   nix.settings.experimental-features = [
     "nix-command"
@@ -125,7 +122,7 @@ in
   programs.firefox.enable = true;
 
   # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+  #nixos.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -139,14 +136,13 @@ in
   ];
 
   fonts.packages = [
-    monolisa-jc-typeface
-    monolisa-jc-nerdfont-typeface
+    pkgs.monolisa-jc
   ];
 
   stylix = {
     enable = true;
-    image = ./wallpaper.png;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/black-metal-venom.yaml";
+    image = ./jupiter.png;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/black-metal.yaml";
     opacity.popups = 0.95;
     fonts = {
       serif = {
@@ -158,8 +154,8 @@ in
         name = "DejaVu Sans";
       };
       monospace = {
-        package = monolisa-jc-nerdfont-typeface;
-        name = "MonolisaJc Nerd Font";
+        package = pkgs.monolisa-jc;
+        name = "MonoLisaJcNerdFont-Regular";
       };
       emoji = {
         package = pkgs.noto-fonts-emoji;

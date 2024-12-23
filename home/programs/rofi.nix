@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   programs.rofi = {
     enable = true;
@@ -6,6 +6,6 @@
     plugins = with pkgs; [
       rofi-calc
     ];
-    # theme = ./theme.rasi;
+    font = lib.mkForce "MonolisaJc Nerd Font 14";
   };
 }

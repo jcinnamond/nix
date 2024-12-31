@@ -1,7 +1,7 @@
 { pkgs, config, ... }:
 
 let
-  colors = config.lib.stylix.colors.withHashtag;
+  colors = config.style.colors;
   nowPlayingLocation = "${config.xdg.configHome}/polybar/now-playing";
 in
 {
@@ -11,7 +11,21 @@ in
     config = ./config.ini;
     script = ''
       polybar top &
+      polybar bottom &
     '';
+    settings = {
+      "colors" = {
+        background = colors.bg;
+        background-alt = colors.bg-alt;
+        foreground = colors.fg;
+        dimmed = colors.fg-dimmer;
+        alert = colors.alert;
+        active = colors.selection-bg;
+      };
+      "fonts" = {
+        default = config.style.nerdfont;
+      };
+    };
     extraConfig = ''
       [module/now-playing]
       type = custom/script
@@ -26,7 +40,23 @@ in
 
       playerctl="${pkgs.playerctl}/bin/playerctl"
       playerctlstatus=$($playerctl status)
+      head="${pkgs.coreutils}/bin/head"
       cut="${pkgs.coreutils}/bin/cut"
+
+      mediasource() {
+        local source=$($playerctl -l | $head -1 | $cut -d'.' -f1) 
+        case $source in
+          "spotify")
+            echo -n "󰝚"
+            ;;
+          "firefox")
+            echo -n ""
+            ;;
+          *)
+            echo -n "($source)"
+            ;;
+        esac
+      }
 
       if [[ $playerctlstatus == "" ]]; then
         echo ""
@@ -34,12 +64,12 @@ in
       fi
 
       if [[ $playerctlstatus == "Playing" ]]; then
-        echo -n "%{F${colors.base0D}}▶ "
+        echo -n "%{F${colors.fg}}▶ $(mediasource) "
       else 
-        echo -n "%{F${colors.base03}} "
+        echo -n "%{F${colors.bg-alt}} $(mediasource) "
       fi
 
-      $playerctl metadata --format "{{artist}}: {{title}}" | $cut -c-80
+      $playerctl metadata --format "{{artist}}: {{title}}"
     '';
     executable = true;
   };

@@ -26,7 +26,7 @@ in
     plugins = with pkgs; [
       rofi-calc
     ];
-    font = config.style.font;
+    font = config.style.nerdfontWithSize;
     extraConfig = {
       modi = "drun,run,window";
       display-drun = " Apps";

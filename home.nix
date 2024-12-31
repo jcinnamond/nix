@@ -113,6 +113,7 @@ in
   #
   home.sessionVariables = {
     EDITOR = "hx";
+    LESSUTFCHARDEF = "E000-F8FF:p,F0000-FFFFD:p,100000-10FFFD:p"; # fixes bat/less showing unicode characters
   };
 
   # Let Home Manager install and manage itself.

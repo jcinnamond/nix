@@ -1,19 +1,15 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
-}:
+{ pkgs, config, ... }:
 
 let
   inherit (config.lib.formats.rasi) mkLiteral;
+  colors = config.style.colors;
 
-  bg = mkLiteral "#000000";
-  bg-alt = mkLiteral "#333333";
-  fg = mkLiteral "#f7f7f7";
-  fg-dim = mkLiteral "#aaaaaa";
-  selection-bg = mkLiteral "#4f709c";
-  selection-fg = mkLiteral "#f7f7f7";
+  bg = mkLiteral colors.bg;
+  bg-alt = mkLiteral colors.bg-alt;
+  fg = mkLiteral colors.fg;
+  fg-dim = mkLiteral colors.fg-dim;
+  selection-bg = mkLiteral colors.selection-bg;
+  selection-fg = mkLiteral colors.selection-fg;
 
   default-padding = mkLiteral "12px";
   small-padding = mkLiteral "8px";
@@ -30,7 +26,7 @@ in
     plugins = with pkgs; [
       rofi-calc
     ];
-    font = lib.mkForce "MonolisaJc Nerd Font 12";
+    font = config.style.font;
     extraConfig = {
       modi = "drun,run,window";
       display-drun = " Apps";

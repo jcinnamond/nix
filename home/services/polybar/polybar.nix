@@ -58,14 +58,15 @@ in
       }
 
       playerctlstatus=$($playerctl status 2>&1)
-      if [[ $? || -n "$playerctlstatus" || "$playerctlstatus" == "No players found" ]]; then
+      if [[ $? -ne 0 || -z "$playerctlstatus" || "$playerctlstatus" == "No players found" ]]; then
+        echo ""
         exit 0
       fi
 
       if [[ $playerctlstatus == "Playing" ]]; then
-        echo -n "%{F${colors.fg}}▶ $(mediasource) "
+        echo -n "%{F${colors.fg}}▶ $(mediasource)  "
       else 
-        echo -n "%{F${colors.bg-alt}} $(mediasource) "
+        echo -n "%{F${colors.bg-alt}} $(mediasource)  "
       fi
 
       $playerctl metadata --format "{{artist}}: {{title}}"

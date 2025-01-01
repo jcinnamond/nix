@@ -39,7 +39,6 @@ in
       #!/bin/sh
 
       playerctl="${pkgs.playerctl}/bin/playerctl"
-      playerctlstatus=$($playerctl status)
       head="${pkgs.coreutils}/bin/head"
       cut="${pkgs.coreutils}/bin/cut"
 
@@ -58,8 +57,8 @@ in
         esac
       }
 
-      if [[ $playerctlstatus == "" ]]; then
-        echo ""
+      playerctlstatus=$($playerctl status 2>&1)
+      if [[ $? || -n "$playerctlstatus" || "$playerctlstatus" == "No players found" ]]; then
         exit 0
       fi
 

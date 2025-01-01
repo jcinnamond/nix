@@ -18,7 +18,7 @@ in
         background = colors.bg;
         background-alt = colors.bg-alt;
         foreground = colors.fg;
-        dimmed = colors.fg-dimmer;
+        dimmed = colors.bg-alt;
         alert = colors.alert;
         active = colors.selection-bg;
       };
@@ -65,11 +65,13 @@ in
 
       if [[ $playerctlstatus == "Playing" ]]; then
         echo -n "%{F${colors.fg}}▶ $(mediasource)  "
+        durationcolor="${colors.fg-dimmer}"
       else 
         echo -n "%{F${colors.bg-alt}} $(mediasource)  "
+        durationcolor="${colors.bg-alt}"
       fi
 
-      $playerctl metadata --format "{{artist}}: {{title}}"
+      $playerctl metadata --format "{{artist}}: {{title}} %{F$durationcolor}({{duration(position)}}/{{duration(mpris:length)}})"
     '';
     executable = true;
   };

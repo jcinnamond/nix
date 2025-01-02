@@ -31,8 +31,8 @@ in
                     monitor: 0,
                     border_width: 2,
                     border_rounding: 12.0,
-                    background_color: Color(hex: "#aa121212"),
-                    border_color: Color(hex: "${colors.fg-dim}"),
+                    background_color: Color(hex: "#44121212"),
+                    border_color: Color(hex: "#ff000000"),
                     padding: Padding(Left: 30, Right: 30, Top: 24, Bottom: 24),
 
                     gap: Vec2(x: 0.0, y: 0.0),
@@ -81,7 +81,7 @@ in
                 params: ScrollingTextBlock((
                     text: "%b",
                     font: "${font} 12",
-                    color: Color(hex: "%{colors.fg-dim}"),
+                    color: Color(hex: "${colors.fg-dim}"),
                     color_hovered: Color(hex: "#fbf1c7"),
                     padding: Padding(left: 7.0, right: 7.0, top: 3.0, bottom: 7.0),
                     width: (min: 150, max: 250),
@@ -95,7 +95,7 @@ in
     		(
     			name: "spotify",
     			parent: "",
-    			offset: (x: 0, y: -200),
+    			offset: (x: 0, y: -40),
     			hook: Hook(parent_anchor: BM, self_anchor: BM),
     			render_criteria: [ AppName("Spotify") ],
     			params: NotificationBlock((

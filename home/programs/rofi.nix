@@ -19,7 +19,6 @@ let
   default-border-radius = mkLiteral "16px";
 in
 {
-  config.stylix.targets.rofi.enable = false;
   config.programs.rofi = {
     enable = true;
     terminal = "${pkgs.kitty}/bin/kitty";

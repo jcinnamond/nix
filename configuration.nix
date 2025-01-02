@@ -139,34 +139,6 @@
     pkgs.monolisa-jc
   ];
 
-  stylix = {
-    enable = true;
-    image = ./jupiter.png;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/black-metal.yaml";
-    opacity.popups = 0.95;
-    fonts = {
-      serif = {
-        package = pkgs.dejavu_fonts;
-        name = "DejaVu Serif";
-      };
-      sansSerif = {
-        package = pkgs.dejavu_fonts;
-        name = "DejaVu Sans";
-      };
-      monospace = {
-        package = pkgs.monolisa-jc;
-        name = "MonoLisaJcNerdFont-Regular";
-      };
-      emoji = {
-        package = pkgs.noto-fonts-emoji;
-        name = "Noto Color Emoji";
-      };
-      sizes.desktop = 10;
-      sizes.applications = 10;
-      sizes.terminal = 12;
-    };
-  };
-
   # Scanner
   hardware.sane = {
     enable = true;

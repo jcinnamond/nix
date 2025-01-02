@@ -7,7 +7,6 @@
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    stylix.url = "github:danth/stylix";
     wired.url = "github:Toqozz/wired-notify";
 
     monolisa-jc.url = "path:/home/jc/fonts/monolisa-jc";
@@ -16,7 +15,6 @@
   outputs =
     {
       nixpkgs,
-      stylix,
       home-manager,
       monolisa-jc,
       wired,
@@ -49,7 +47,6 @@
             home-manager.users.jc = import ./home.nix;
             home-manager.sharedModules = [ wired.homeManagerModules.default ];
           }
-          stylix.nixosModules.stylix
         ];
       };
     };

@@ -1,6 +1,5 @@
 { pkgs, ... }:
 {
-  config.stylix.targets.helix.enable = false;
   config.programs.helix = {
     enable = true;
     defaultEditor = true;

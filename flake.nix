@@ -8,6 +8,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     stylix.url = "github:danth/stylix";
+    wired.url = "github:Toqozz/wired-notify";
 
     monolisa-jc.url = "path:/home/jc/fonts/monolisa-jc";
   };
@@ -18,6 +19,7 @@
       stylix,
       home-manager,
       monolisa-jc,
+      wired,
       ...
     }:
     let
@@ -29,6 +31,7 @@
           (final: prev: {
             monolisa-jc = prev.callPackage "${monolisa-jc}" { };
           })
+          wired.overlays.default
         ];
         config.allowUnfree = true;
       };
@@ -44,6 +47,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.jc = import ./home.nix;
+            home-manager.sharedModules = [ wired.homeManagerModules.default ];
           }
           stylix.nixosModules.stylix
         ];

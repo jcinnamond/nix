@@ -6,10 +6,11 @@
 
 module Main where
 
-import Colors (focusedColor, inactiveColor)
 import Data.List (isPrefixOf)
 import Data.Map qualified as M
+import Nix qualified
 import System.Exit (exitSuccess)
+import Volume qualified
 import XMonad (Button, ButtonMask, ChangeLayout (..), IncMasterN (..), KeyMask, KeySym, ManageHook, Query, Window, X, XConfig (..), button1, button3, className, composeAll, doF, doFloat, doShift, focus, io, kill, mod1Mask, mod4Mask, mouseMoveWindow, mouseResizeWindow, noModMask, runQuery, sendMessage, shiftMask, spawn, stringToKeysym, title, windows, withFocused, xK_Escape, xK_Left, xK_Right, xK_Tab, xK_a, xK_comma, xK_e, xK_equal, xK_i, xK_k, xK_l, xK_m, xK_n, xK_period, xK_q, xK_r, xK_s, xK_space, xK_z, xmonad, (-->), (.|.), (<+>), (=?), (|||))
 import XMonad.Actions.CopyWindow (copyToAll)
 import XMonad.Actions.PerWorkspaceKeys (bindOn)
@@ -49,6 +50,7 @@ myManageHook =
     composeAll
         [ isStreaming --> doShift "streaming"
         , className =? "Spotify" --> doShift "music"
+        , className =? "Signal" --> doShift "chat"
         , title =? "Picture-in-Picture" --> doFloat
         , title =? "Picture-in-Picture" --> doF copyToAll
         ]
@@ -82,8 +84,8 @@ wmKeys =
     , ((noModMask, stringToKeysym "XF86AudioPrev"), spawn "playerctl previous")
     , ((noModMask, stringToKeysym "XF86AudioNext"), spawn "playerctl next")
     , ((noModMask, stringToKeysym "XF86AudioStop"), spawn "playerctl stop")
-    , ((noModMask, stringToKeysym "XF86AudioRaiseVolume"), spawn "pactl set-sink-volume @DEFAULT_SINK@ +2%")
-    , ((noModMask, stringToKeysym "XF86AudioLowerVolume"), spawn "pactl set-sink-volume @DEFAULT_SINK@ -2%")
+    , ((noModMask, stringToKeysym "XF86AudioRaiseVolume"), spawn $ Volume.increase 2)
+    , ((noModMask, stringToKeysym "XF86AudioLowerVolume"), spawn $ Volume.decrease 2)
     , ((noModMask, stringToKeysym "XF86AudioMute"), spawn "pactl set-sink-mute @DEFAULT_SINK@ toggle")
     , -- Workspaces
       ((mod4Mask, xK_a), (windows . W.greedyView) "dev")
@@ -109,8 +111,8 @@ theme :: XConfig a -> XConfig a
 theme config =
     config
         { borderWidth = 2
-        , focusedBorderColor = focusedColor
-        , normalBorderColor = inactiveColor
+        , focusedBorderColor = Nix.focusedColor
+        , normalBorderColor = Nix.unfocusedColor
         }
 
 myLayout = windowNavigation $ avoidStruts $ maximizeWithPadding 0 $ spaceWindows $ boringWindows layouts

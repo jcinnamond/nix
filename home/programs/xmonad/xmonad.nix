@@ -1,12 +1,14 @@
 { pkgs, config, ... }:
 
 let
-  colors = config.lib.stylix.colors.withHashtag;
+  colors = config.style.colors;
 in
 {
   home.packages = with pkgs; [
-    pulseaudio
+    libnotify
     pasystray
+    ponymix
+    pulseaudio
     nautilus
   ];
 
@@ -27,13 +29,18 @@ in
       ];
       config = ./config/Main.hs;
       libFiles = {
-        "Colors.hs" = pkgs.writeText "Colors.hs" ''
-          module Colors where
+        "Nix.hs" = pkgs.writeText "Nix.hs" ''
+          module Nix where
+          ponymix :: String
+          ponymix = "${pkgs.ponymix}/bin/ponymix"
+          notify :: String
+          notify = "${pkgs.libnotify}/bin/notify-send"
           focusedColor :: String
-          focusedColor = "${colors.base0D}"
-          inactiveColor :: String
-          inactiveColor = "${colors.base03}"
+          focusedColor = "${colors.fg-dimmer}"
+          unfocusedColor :: String
+          unfocusedColor = "${colors.bg-alt}"
         '';
+        "Volume.hs" = ./config/Volume.hs;
       };
     };
   };

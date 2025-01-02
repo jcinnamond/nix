@@ -67,7 +67,7 @@ in
 
   imports = [
     ./home/services/polybar/polybar.nix
-    ./home/services/dunst.nix
+    ./home/services/wired
     ./home/programs/xmonad/xmonad.nix
     ./home/programs/fish.nix
     ./home/programs/kitty.nix

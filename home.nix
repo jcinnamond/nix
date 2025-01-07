@@ -76,6 +76,8 @@ in
     ./home/style/default.nix
   ];
 
+  style.colors.schemeName = "everforestDarkHard";
+
   systemd.user.startServices = true;
   home.keyboard.layout = "gb";
 

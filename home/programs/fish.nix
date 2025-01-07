@@ -58,20 +58,20 @@ in
 
       enableTheme = with colors; ''
         set --universal fish_color_autosuggestion ${fg0} 
-        set --universal fish_color_command        ${base01} 
+        set --universal fish_color_command        ${base0d} 
         set --universal fish_color_comment        ${fg1} 
-        set --universal fish_color_cwd            ${base06} 
-        set --universal fish_color_end            ${base06} 
+        set --universal fish_color_cwd            ${base0b} 
+        set --universal fish_color_end            ${base0b} 
         set --universal fish_color_error          ${alert} 
         set --universal fish_color_escape         ${fg} 
-        set --universal fish_color_match          ${base02} 
+        set --universal fish_color_match          ${base0a} 
         set --universal fish_color_normal         ${fg} 
         set --universal fish_color_operator       ${fg}
         set --universal fish_color_param          ${fg}
         set --universal fish_color_quote          ${fg0}
         set --universal fish_color_redirection    ${fg}
         set --universal fish_color_search_match   --background ${selection}
-        set --universal fish_color_selection      ${base02}
+        set --universal fish_color_selection      ${base0a}
 
         set --universal fish_color_cancel         ${fg}
         set --universal fish_color_host           ${fg0}

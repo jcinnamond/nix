@@ -67,7 +67,7 @@ in
                     text: "%s",
                     font: "${font} Bold 12",
                     ellipsize: Middle,
-                    color: Color(hex: "${colors.fg}"),
+                    color: Color(hex: "${colors.text}"),
                     padding: Padding(left: 7.0, right: 7.0, top: 7.0, bottom: 0.0),
                     dimensions: (width: (min: 50, max: 150), height: (min: 0, max: 0)),
                 )),
@@ -81,7 +81,7 @@ in
                 params: ScrollingTextBlock((
                     text: "%b",
                     font: "${font} 12",
-                    color: Color(hex: "${colors.fg-dim}"),
+                    color: Color(hex: "${colors.textDim}"),
                     color_hovered: Color(hex: "#fbf1c7"),
                     padding: Padding(left: 7.0, right: 7.0, top: 3.0, bottom: 7.0),
                     width: (min: 150, max: 250),

@@ -3,6 +3,7 @@
   programs.kitty = {
     enable = true;
     font.name = lib.mkForce "MonoLisa jc";
+    font.size = 12;
     shellIntegration.enableFishIntegration = true;
     keybindings = {
       "ctrl+tab" = "next_window";

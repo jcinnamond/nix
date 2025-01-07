@@ -36,9 +36,9 @@ in
           notify :: String
           notify = "${pkgs.libnotify}/bin/notify-send"
           focusedColor :: String
-          focusedColor = "${colors.fg-dimmer}"
+          focusedColor = "${colors.focusedBorder}"
           unfocusedColor :: String
-          unfocusedColor = "${colors.bg-alt}"
+          unfocusedColor = "${colors.unfocusedBorder}"
         '';
         "Volume.hs" = ./config/Volume.hs;
       };

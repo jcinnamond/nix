@@ -4,12 +4,12 @@ let
   inherit (config.lib.formats.rasi) mkLiteral;
   colors = config.style.colors;
 
-  bg = mkLiteral colors.bg;
-  bg-alt = mkLiteral colors.bg-alt;
-  fg = mkLiteral colors.fg;
-  fg-dim = mkLiteral colors.fg-dim;
-  selection-bg = mkLiteral colors.selection-bg;
-  selection-fg = mkLiteral colors.selection-fg;
+  bg = mkLiteral colors.background;
+  bg-alt = mkLiteral colors.backgroundDim;
+  fg = mkLiteral colors.text;
+  fg-dim = mkLiteral colors.textDim;
+  selection-bg = mkLiteral colors.selectionBackground;
+  selection-fg = mkLiteral colors.selectionForeground;
 
   default-padding = mkLiteral "12px";
   small-padding = mkLiteral "8px";

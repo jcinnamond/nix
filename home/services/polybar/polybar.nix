@@ -15,12 +15,11 @@ in
     '';
     settings = {
       "colors" = {
-        background = colors.bg;
-        background-alt = colors.bg-alt;
-        foreground = colors.fg;
-        dimmed = colors.bg-alt;
+        background = colors.transparent;
+        foreground = colors.text;
+        dimmed = colors.backgroundDim;
         alert = colors.alert;
-        active = colors.selection-bg;
+        active = colors.selectionBackground;
       };
       "fonts" = {
         default = config.style.nerdfont;
@@ -64,11 +63,11 @@ in
       fi
 
       if [[ $playerctlstatus == "Playing" ]]; then
-        echo -n "%{F${colors.fg}}▶ $(mediasource)  "
-        durationcolor="${colors.fg-dimmer}"
+        echo -n "%{F${colors.text}}▶ $(mediasource)  "
+        durationcolor="${colors.textDim}"
       else 
-        echo -n "%{F${colors.bg-alt}} $(mediasource)  "
-        durationcolor="${colors.bg-alt}"
+        echo -n "%{F${colors.textDimmest}} $(mediasource)  "
+        durationcolor="${colors.textDimmest}"
       fi
 
       $playerctl metadata --format "{{artist}}: {{title}} %{F$durationcolor}({{duration(position)}}/{{duration(mpris:length)}})"

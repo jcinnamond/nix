@@ -27,6 +27,10 @@ with lib;
       type = types.nonEmptyStr;
       description = "standard font";
     };
+    baseColors = mkOption {
+      type = types.attrs;
+      description = "underlying color scheme. Try to us 'colors' instead for application styling";
+    };
     colors = mkOption {
       type = types.attrs;
       description = "colors to use when styling applications";
@@ -39,7 +43,7 @@ with lib;
     nerdfont = "MonolisaJc Nerd Font";
     nerdfontWithSize = "${config.style.nerdfont} ${toString config.style.fontsize}";
     variableWidthFont = "DejaVu Sans";
-    colors = {
+    baseColors = {
       bg = "#000000";
       bg-alt2 = "#222222";
       bg-alt = "#333333";
@@ -49,6 +53,21 @@ with lib;
       selection-bg = "#4f709c";
       selection-fg = "#f7f7f7";
       alert = "#A23E48";
+      transparent = "#000000";
+    };
+    colors = with config.style.baseColors; {
+      alert = alert;
+      transparent = transparent;
+      background = bg;
+      backgroundDim = bg-alt;
+      text = fg;
+      text-dim = fg-dim;
+      textDim = fg-dim;
+      textDimmest = bg-alt;
+      focusedBorder = fg-dimmer;
+      unfocusedBorder = bg-alt;
+      selectionBackground = selection-bg;
+      selectionForeground = selection-fg;
     };
   };
 }

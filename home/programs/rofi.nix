@@ -2,14 +2,15 @@
 
 let
   inherit (config.lib.formats.rasi) mkLiteral;
-  colors = config.style.colors;
+  colors = config.style.colors.withHash;
+  fonts = config.style.fonts;
 
-  bg = mkLiteral colors.background;
-  bg-alt = mkLiteral colors.backgroundDim;
-  fg = mkLiteral colors.text;
-  fg-dim = mkLiteral colors.textDim;
-  selection-bg = mkLiteral colors.selectionBackground;
-  selection-fg = mkLiteral colors.selectionForeground;
+  bg = mkLiteral colors.bg;
+  bg-alt = mkLiteral colors.bg1;
+  fg = mkLiteral colors.fg;
+  fg-dim = mkLiteral colors.fg0;
+  selection-bg = mkLiteral colors.selection;
+  selection-fg = mkLiteral colors.fg;
 
   default-padding = mkLiteral "12px";
   small-padding = mkLiteral "8px";
@@ -25,7 +26,7 @@ in
     plugins = with pkgs; [
       rofi-calc
     ];
-    font = config.style.nerdfontWithSize;
+    font = fonts.withSize fonts.nerdfont;
     extraConfig = {
       modi = "drun,run,window";
       display-drun = " Apps";

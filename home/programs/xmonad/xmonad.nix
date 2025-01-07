@@ -1,7 +1,7 @@
 { pkgs, config, ... }:
 
 let
-  colors = config.style.colors;
+  colors = config.style.colors.withHash;
 in
 {
   home.packages = with pkgs; [
@@ -36,9 +36,9 @@ in
           notify :: String
           notify = "${pkgs.libnotify}/bin/notify-send"
           focusedColor :: String
-          focusedColor = "${colors.focusedBorder}"
+          focusedColor = "${colors.activeBorder}"
           unfocusedColor :: String
-          unfocusedColor = "${colors.unfocusedBorder}"
+          unfocusedColor = "${colors.inactiveBorder}"
         '';
         "Volume.hs" = ./config/Volume.hs;
       };

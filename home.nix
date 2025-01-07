@@ -73,7 +73,7 @@ in
     ./home/programs/kitty.nix
     ./home/programs/helix.nix
     ./home/programs/rofi.nix
-    ./home/style.nix
+    ./home/style/default.nix
   ];
 
   systemd.user.startServices = true;

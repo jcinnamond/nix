@@ -1,7 +1,7 @@
 { config, ... }:
 let
-  colors = config.style.colors;
-  font = config.style.variableWidthFont;
+  colors = config.style.colors.withHash;
+  font = config.style.fonts.variableWidth;
 in
 {
   config.services.wired = {
@@ -67,7 +67,7 @@ in
                     text: "%s",
                     font: "${font} Bold 12",
                     ellipsize: Middle,
-                    color: Color(hex: "${colors.text}"),
+                    color: Color(hex: "${colors.fg}"),
                     padding: Padding(left: 7.0, right: 7.0, top: 7.0, bottom: 0.0),
                     dimensions: (width: (min: 50, max: 150), height: (min: 0, max: 0)),
                 )),
@@ -81,7 +81,7 @@ in
                 params: ScrollingTextBlock((
                     text: "%b",
                     font: "${font} 12",
-                    color: Color(hex: "${colors.textDim}"),
+                    color: Color(hex: "${colors.fg0}"),
                     color_hovered: Color(hex: "#fbf1c7"),
                     padding: Padding(left: 7.0, right: 7.0, top: 3.0, bottom: 7.0),
                     width: (min: 150, max: 250),

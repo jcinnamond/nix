@@ -1,7 +1,8 @@
 { pkgs, config, ... }:
 
 let
-  colors = config.style.colors;
+  colors = config.style.colors.withHash;
+  fonts = config.style.fonts;
   nowPlayingLocation = "${config.xdg.configHome}/polybar/now-playing";
 in
 {
@@ -13,16 +14,16 @@ in
       polybar top &
       polybar bottom &
     '';
-    settings = {
+    settings = with colors; {
       "colors" = {
-        background = colors.transparent;
-        foreground = colors.text;
-        dimmed = colors.backgroundDim;
-        alert = colors.alert;
-        active = colors.selectionBackground;
+        background = "#ff000000";
+        foreground = fg;
+        dimmed = fg2;
+        alert = alert;
+        active = selection;
       };
-      "fonts" = {
-        default = config.style.nerdfont;
+      "fonts" = with fonts; {
+        default = nerdfont;
       };
     };
     extraConfig = ''
@@ -63,11 +64,11 @@ in
       fi
 
       if [[ $playerctlstatus == "Playing" ]]; then
-        echo -n "%{F${colors.text}}▶ $(mediasource)  "
-        durationcolor="${colors.textDim}"
+        echo -n "%{F${colors.base07}}▶ $(mediasource)  "
+        durationcolor="${colors.fg0}"
       else 
-        echo -n "%{F${colors.textDimmest}} $(mediasource)  "
-        durationcolor="${colors.textDimmest}"
+        echo -n "%{F${colors.fg2}} $(mediasource)  "
+        durationcolor="${colors.fg2}"
       fi
 
       $playerctl metadata --format "{{artist}}: {{title}} %{F$durationcolor}({{duration(position)}}/{{duration(mpris:length)}})"

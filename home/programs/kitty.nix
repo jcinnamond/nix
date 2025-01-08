@@ -44,6 +44,8 @@
       selection_foreground ${fg}
       selection_background ${selection}
       active_border_color  ${activeBorder}
+
+      inactive_text_alpha 0.3
     '';
   };
 }

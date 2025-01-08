@@ -76,7 +76,7 @@ in
     ./home/style/default.nix
   ];
 
-  style.colors.schemeName = "espresso";
+  style.colors.schemeName = "jc";
 
   systemd.user.startServices = true;
   home.keyboard.layout = "gb";

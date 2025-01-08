@@ -5,13 +5,6 @@ let
   colors = config.style.colors.withHash;
   fonts = config.style.fonts;
 
-  bg = mkLiteral colors.bg;
-  bg-alt = mkLiteral colors.bg1;
-  fg = mkLiteral colors.fg;
-  fg-dim = mkLiteral colors.fg0;
-  selection-bg = mkLiteral colors.selection;
-  selection-fg = mkLiteral colors.fg;
-
   default-padding = mkLiteral "12px";
   small-padding = mkLiteral "8px";
   default-spacing = mkLiteral "8px";
@@ -36,23 +29,23 @@ in
       drun-display-format = "{name}";
       run-shell-command = "${pkgs.kitty}/bin/kitty --hold {cmd}";
     };
-    theme = {
+    theme = with colors; {
       "*" = {
-        background-color = bg;
-        text-color = fg;
+        background-color = mkLiteral bg;
+        text-color = mkLiteral fg;
       };
 
       window = {
         width = mkLiteral "800px";
         border-radius = default-border-radius;
         padding = default-padding;
-        border-color = bg-alt;
+        border-color = mkLiteral bg2;
         border = mkLiteral "2px";
       };
 
       scrollbar = {
-        background-color = bg-alt;
-        handle-color = selection-bg;
+        background-color = mkLiteral bg0;
+        handle-color = mkLiteral bg2;
         handle-width = mkLiteral "12px";
         border-radius = mkLiteral "8px";
       };
@@ -79,18 +72,18 @@ in
 
       entry = {
         placeholder = "...";
-        placeholder-color = fg-dim;
+        placeholder-color = mkLiteral fg2;
       };
 
       message = {
         margin = default-margin;
         border-radius = default-border-radius;
-        background-color = bg-alt;
+        background-color = mkLiteral bg1;
       };
 
       textbox = {
         padding = default-padding;
-        background-color = bg-alt;
+        background-color = mkLiteral bg1;
       };
 
       listview = {
@@ -115,12 +108,12 @@ in
       };
 
       "element-text selected" = {
-        text-color = selection-fg;
+        text-color = mkLiteral fg;
       };
 
       "element selected normal, element selected active" = {
-        background-color = selection-bg;
-        text-color = selection-fg;
+        background-color = mkLiteral selection;
+        text-color = mkLiteral fg;
       };
 
       element-icon = {
@@ -140,7 +133,7 @@ in
       };
 
       "button selected" = {
-        background-color = selection-bg;
+        background-color = mkLiteral bg1;
       };
     };
   };

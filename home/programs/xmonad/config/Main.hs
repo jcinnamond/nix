@@ -111,8 +111,8 @@ theme :: XConfig a -> XConfig a
 theme config =
     config
         { borderWidth = 2
-        , focusedBorderColor = Nix.focusedColor
-        , normalBorderColor = Nix.unfocusedColor
+        , focusedBorderColor = Nix.focusedBorderColor
+        , normalBorderColor = Nix.normalBorderColor
         }
 
 myLayout = windowNavigation $ avoidStruts $ maximizeWithPadding 0 $ spaceWindows $ boringWindows layouts

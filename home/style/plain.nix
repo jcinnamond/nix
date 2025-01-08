@@ -1,35 +1,41 @@
-{
-  # Base16 colors
-  base00 = "000000"; # black
-  base01 = "0000ff"; # blue
-  base02 = "00ff00"; # green
-  base03 = "00ffff"; # aqua
-  base04 = "ff0000"; # red
-  base05 = "800080"; # purple
-  base06 = "ffff00"; # yellow
-  base07 = "cccccc"; # white
-  base08 = "999999"; # gray
-  base09 = "aaaaff"; # bright blue
-  base0a = "aaffaa"; # light green
-  base0b = "aaffff"; # light aqua
-  base0c = "ffaaaa"; # light red
-  base0d = "f070f0"; # light purple
-  base0e = "ffffaa"; # light yellow
-  base0f = "ffffff"; # bright white
+rec {
+  red = "aa0000";
+  red-light = "ff2222";
+  red-dark = "440000";
 
-  # Common variations
+  green = "00aa00";
+  green-light = "22ff22";
+  green-dark = "004400";
+
+  yellow = "aaaa00";
+  yellow-light = "ffff22";
+  yellow-dark = "444400";
+
+  blue = "0000aa";
+  blue-light = "2222ff";
+  blue-dark = "000044";
+
+  magenta = "800080";
+  magenta-light = "f070f0";
+  magenta-dark = "400040";
+
+  cyan = "00aaaa";
+  cyan-light = "22ffff";
+  cyan-dark = "004444";
+
   bg = "000000";
-  bg0 = "222222"; # lighter background
-  bg1 = "444444"; # lighter background
+  bg0 = "222222";
+  bg1 = "333333";
+  bg2 = "444444";
 
-  fg = "cccccc";
-  fg0 = "aaaaaa"; # dimmer foreground
-  fg1 = "777777"; # dimmer foreground
-  fg2 = "555555"; # dimmer foreground
+  fg = "ffffff";
+  fg0 = "cccccc"; # e.g., strings
+  fg1 = "999999"; # e.g., comments
+  fg2 = "555555"; # e.g., deactivated
 
   # Special named colors
-  selection = "333377"; # selection background
-  activeBorder = "800080";
-  inactiveBorder = "222222";
-  alert = "ffaaaa";
+  selection = blue-dark;
+  activeBorder = fg;
+  inactiveBorder = fg2;
+  alert = red;
 }

@@ -64,8 +64,8 @@ in
       fi
 
       if [[ $playerctlstatus == "Playing" ]]; then
-        echo -n "%{F${colors.base07}}▶ $(mediasource)  "
-        durationcolor="${colors.fg0}"
+        echo -n "%{F${colors.fg}}▶ $(mediasource)  "
+        durationcolor="${colors.fg1}"
       else 
         echo -n "%{F${colors.fg2}} $(mediasource)  "
         durationcolor="${colors.fg2}"

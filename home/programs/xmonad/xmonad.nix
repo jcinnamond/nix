@@ -35,10 +35,10 @@ in
           ponymix = "${pkgs.ponymix}/bin/ponymix"
           notify :: String
           notify = "${pkgs.libnotify}/bin/notify-send"
-          focusedColor :: String
-          focusedColor = "${colors.activeBorder}"
-          unfocusedColor :: String
-          unfocusedColor = "${colors.inactiveBorder}"
+          focusedBorderColor :: String
+          focusedBorderColor = "${colors.activeBorder}"
+          normalBorderColor :: String
+          normalBorderColor = "${colors.inactiveBorder}"
         '';
         "Volume.hs" = ./config/Volume.hs;
       };

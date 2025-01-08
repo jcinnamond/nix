@@ -28,7 +28,7 @@ in
         ];
         body = ''
           string join "" -- \
-            (set_color -b $bg $fg) $s \
+            (set_color -b $bg $fg) $s ' ' \
             (set_color $nextBg) '' \
             (set_color -b $nextBg)
         '';
@@ -42,8 +42,6 @@ in
 
         set -l pwd (_prompt_powerline (prompt_pwd) $fish_color_prompt_bg $fish_color_prompt_fg ${bg}) \
 
-        # string join "" -- $jobs_info $nix_shell_info \
-        #     (prompt_pwd) ' '  ''  (set_color normal)' '
         string join "" -- \
           $jobs_info \
           $nix_shell_info \
@@ -57,31 +55,31 @@ in
       '';
 
       enableTheme = with colors; ''
-        set --universal fish_color_autosuggestion ${fg0} 
-        set --universal fish_color_command        ${base0d} 
+        set --universal fish_color_autosuggestion ${fg1} 
+        set --universal fish_color_command        ${cyan-light} 
         set --universal fish_color_comment        ${fg1} 
-        set --universal fish_color_cwd            ${base0b} 
-        set --universal fish_color_end            ${base0b} 
-        set --universal fish_color_error          ${alert} 
+        set --universal fish_color_cwd            ${yellow} 
+        set --universal fish_color_end            ${yellow} 
+        set --universal fish_color_error          ${red-light} 
         set --universal fish_color_escape         ${fg} 
-        set --universal fish_color_match          ${base0a} 
+        set --universal fish_color_match          ${blue-dark} 
         set --universal fish_color_normal         ${fg} 
         set --universal fish_color_operator       ${fg}
         set --universal fish_color_param          ${fg}
         set --universal fish_color_quote          ${fg0}
         set --universal fish_color_redirection    ${fg}
         set --universal fish_color_search_match   --background ${selection}
-        set --universal fish_color_selection      ${base0a}
+        set --universal fish_color_selection      ${fg}
 
         set --universal fish_color_cancel         ${fg}
-        set --universal fish_color_host           ${fg0}
-        set --universal fish_color_host_remote    ${fg0}
-        set --universal fish_color_user           ${fg0}
+        set --universal fish_color_host           ${fg1}
+        set --universal fish_color_host_remote    ${fg1}
+        set --universal fish_color_user           ${fg1}
 
         set --universal fish_color_prompt_fg ${fg}
-        set --universal fish_color_prompt_bg ${bg0}
-        set --universal fish_color_prompt2_fg ${fg}
-        set --universal fish_color_prompt2_bg ${bg1}
+        set --universal fish_color_prompt_bg ${bg2}
+        set --universal fish_color_prompt2_fg ${fg0}
+        set --universal fish_color_prompt2_bg ${bg0}
       '';
     };
   };

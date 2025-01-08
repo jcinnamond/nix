@@ -1,8 +1,8 @@
 module Nix (
     ponymix,
     notify,
-    focusedColor,
-    unfocusedColor,
+    focusedBorderColor,
+    normalBorderColor,
 )
 where
 
@@ -14,8 +14,8 @@ ponymix = "ponymix"
 notify :: String
 notify = "notify-send"
 
-focusedColor :: String
-focusedColor = ""
+focusedBorderColor :: String
+focusedBorderColor = ""
 
-unfocusedColor :: String
-unfocusedColor = ""
+normalBorderColor :: String
+normalBorderColor = ""

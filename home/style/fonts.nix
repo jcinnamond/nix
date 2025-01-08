@@ -22,6 +22,11 @@ with lib;
       description = "standard font";
       default = "DejaVu Sans";
     };
+    heading = mkOption {
+      type = types.nonEmptyStr;
+      description = "heading font";
+      default = "DejaVu Sans Condensed Bold";
+    };
 
     withSize = mkOption {
       readOnly = true;

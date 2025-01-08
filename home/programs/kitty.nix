@@ -45,6 +45,7 @@
       selection_background ${selection}
       active_border_color  ${activeBorder}
 
+      background_opacity 0.98
       inactive_text_alpha 0.3
     '';
   };

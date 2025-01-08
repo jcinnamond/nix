@@ -1,4 +1,7 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
+let
+  colors = config.style.colors.withHash;
+in
 {
   config.programs.helix = {
     enable = true;
@@ -43,196 +46,173 @@
     ];
 
     themes = {
-      jc =
-        let
-          black = "#000000";
-          bg0 = "#121212";
-          bg1 = "#222222";
-          bg3 = "#444444";
-          bg4 = "#888888";
+      jc = with colors; {
+        "ui.background" = {
+          bg = bg;
+        };
+        "ui.text" = fg;
+        "ui.selection" = {
+          bg = selection;
+        };
+        "ui.gutter" = {
+          bg = bg0;
+        };
+        "ui.gutter.selected" = {
+          bg = bg1;
+        };
+        "ui.linenr" = {
+          fg = fg1;
+        };
+        "ui.linenr.selected" = {
+          fg = fg;
+        };
+        "ui.window" = fg2;
 
-          white = "#f8f7f2";
-          brightwhite = "#ffffff";
-          fg0 = "#c7c7c7";
-          fg1 = "#777777";
-          fg2 = "#999999";
-          fg3 = "#c1c1c1";
+        "ui.cursor" = {
+          bg = fg2;
+          fg = fg;
+        };
+        "ui.cursor.insert" = {
+          bg = fg;
+          fg = fg;
+        };
+        "ui.cursor.normal" = {
+          bg = bg2;
+        };
+        "ui.cursor.match" = {
+          bg = bg2;
+        };
+        "ui.cursor.select" = {
+          bg = selection;
+        };
+        "ui.cursorline.primary" = {
+          bg = bg0;
+        };
+        "ui.cursorline.secondary" = {
+          bg = bg0;
+        };
 
-          red = "#79241f";
-          brightred = "#a9241f";
-          green = "#5f8787";
-          yellow = "#fbcb97";
-          blue = "#5f81a5";
-          darkblue = "#1f4165";
-          lightblue = "#d0dfee";
-        in
-        {
+        "ui.statusline" = {
+          bg = bg1;
+          fg = fg0;
+        };
+        "ui.statusline.inactive" = {
+          bg = bg0;
+          fg = fg2;
+        };
 
-          "ui.background" = {
-            bg = black;
-          };
-          "ui.text" = fg0;
-          "ui.selection" = {
-            bg = darkblue;
-          };
-          "ui.gutter" = {
-            bg = bg0;
-          };
-          "ui.gutter.selected" = {
-            bg = bg1;
-          };
-          "ui.linenr" = {
-            fg = fg0;
-          };
-          "ui.linenr.selected" = {
-            fg = white;
-          };
-          "ui.window" = fg3;
+        "ui.popup" = {
+          bg = bg1;
+          fg = fg;
+        };
+        "ui.menu" = {
+          bg = bg0;
+          fg = fg1;
+        };
+        "ui.menu.selected" = {
+          bg = selection;
+          fg = fg;
+        };
+        "ui.highlight" = {
+          bg = red-dark;
+        };
+        "ui.virtual.indent-guide" = bg1;
+        "ui.virtual.wrap" = bg2;
 
-          "ui.cursor" = {
-            bg = bg3;
-            fg = white;
-          };
-          "ui.cursor.insert" = {
-            bg = white;
-            fg = white;
-          };
-          "ui.cursor.normal" = {
-            bg = bg4;
-          };
-          "ui.cursor.match" = {
-            bg = bg1;
-          };
-          "ui.cursor.select" = {
-            bg = blue;
-          };
-          "ui.cursorline.primary" = {
-            bg = bg0;
-          };
-          "ui.cursorline.secondary" = {
-            bg = bg0;
-          };
-
-          "ui.statusline" = {
-            bg = bg3;
-            fg = white;
-          };
-          "ui.statusline.inactive" = {
-            bg = bg0;
-            fg = fg2;
-          };
-
-          "ui.popup" = {
-            bg = bg1;
-            fg = white;
-          };
-          "ui.menu" = {
-            bg = bg1;
-            fg = white;
-          };
-          "ui.menu.selected" = {
-            bg = bg3;
-            fg = lightblue;
-          };
-          "ui.highlight" = {
-            bg = red;
-          };
-          "ui.virtual.indent-guide" = bg3;
-
-          "warning" = {
-            fg = yellow;
-          };
-          "error" = {
-            fg = brightred;
-          };
-          "info" = {
-            fg = blue;
-          };
-          "hint" = {
-            fg = lightblue;
-          };
-          "diagnostic" = {
-            underline = {
-              style = "curl";
-            };
-          };
-          "diagnostic.hint" = {
-            underline = {
-              color = lightblue;
-              style = "dotted";
-            };
-          };
-          "diagnostic.info" = {
-            underline = {
-              color = blue;
-              style = "dotted";
-            };
-          };
-          "diagnostic.warning" = {
-            underline = {
-              color = yellow;
-              style = "dotted";
-            };
-          };
-          "diagnostic.error" = {
-            underline = {
-              color = red;
-              style = "dotted";
-            };
-            fg = brightred;
-          };
-
-          "string" = {
-            fg = fg2;
-            modifiers = [ "italic" ];
-          };
-          "keyword" = {
-            fg = white;
-            modifiers = [ "bold" ];
-          };
-          "comment" = {
-            fg = fg1;
-            modifiers = [ "" ];
-          };
-          "punctuation" = {
-            fg = fg2;
-          };
-          "operator" = {
-            fg = white;
-          };
-          "type" = {
-            fg = white;
-          };
-          "markdown.heading" = {
-            fg = blue;
-            modifiers = [ "bold" ];
-          };
-          "markdown.heading.marker" = {
-            fg = fg1;
-          };
-          "markdown.heading.1" = {
-            fg = blue;
-            modifiers = [ "bold" ];
-          };
-          "markup.heading.2" = {
-            fg = yellow;
-          };
-          "markup.heading.3" = {
-            fg = white;
-          };
-          "markup.heading.4" = {
-            fg = white;
-          };
-          "diff.plus" = {
-            fg = green;
-          };
-          "diff.minus" = {
-            fg = red;
-          };
-          "diff.delta" = {
-            fg = yellow;
+        "warning" = {
+          fg = yellow;
+        };
+        "error" = {
+          fg = red-light;
+        };
+        "info" = {
+          fg = blue;
+        };
+        "hint" = {
+          fg = cyan-light;
+        };
+        "diagnostic" = {
+          underline = {
+            style = "curl";
           };
         };
+        "diagnostic.hint" = {
+          underline = {
+            color = cyan-light;
+            style = "dotted";
+          };
+        };
+        "diagnostic.info" = {
+          underline = {
+            color = blue;
+            style = "dotted";
+          };
+        };
+        "diagnostic.warning" = {
+          underline = {
+            color = yellow;
+            style = "dotted";
+          };
+        };
+        "diagnostic.error" = {
+          underline = {
+            color = red-dark;
+            style = "dotted";
+          };
+          fg = red;
+        };
+
+        "string" = {
+          fg = fg0;
+          modifiers = [ "italic" ];
+        };
+        "keyword" = {
+          fg = fg;
+          modifiers = [ "bold" ];
+        };
+        "comment" = {
+          fg = fg1;
+          modifiers = [ "" ];
+        };
+        "punctuation" = {
+          fg = fg1;
+        };
+        "operator" = {
+          fg = fg;
+        };
+        "type" = {
+          fg = fg;
+        };
+        "markdown.heading" = {
+          fg = blue;
+          modifiers = [ "bold" ];
+        };
+        "markdown.heading.marker" = {
+          fg = fg1;
+        };
+        "markdown.heading.1" = {
+          fg = blue;
+          modifiers = [ "bold" ];
+        };
+        "markup.heading.2" = {
+          fg = yellow;
+        };
+        "markup.heading.3" = {
+          fg = fg;
+        };
+        "markup.heading.4" = {
+          fg = fg;
+        };
+        "diff.plus" = {
+          fg = green-dark;
+        };
+        "diff.minus" = {
+          fg = red-dark;
+        };
+        "diff.delta" = {
+          fg = bg2;
+        };
+      };
     };
   };
 }

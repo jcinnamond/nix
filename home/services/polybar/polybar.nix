@@ -16,7 +16,7 @@ in
     '';
     settings = with colors; {
       "colors" = {
-        background = "#ff000000";
+        background = "#00000000";
         foreground = fg;
         dimmed = fg2;
         alert = alert;

@@ -118,6 +118,9 @@ in
         };
         "ui.virtual.indent-guide" = bg1;
         "ui.virtual.wrap" = bg2;
+        "ui.virtual.ruler" = {
+          bg = bg0;
+        };
 
         "warning" = {
           fg = yellow;
@@ -183,25 +186,30 @@ in
         "type" = {
           fg = fg;
         };
-        "markdown.heading" = {
-          fg = blue;
-          modifiers = [ "bold" ];
+        "markup.heading.marker" = {
+          fg = fg2;
         };
-        "markdown.heading.marker" = {
-          fg = fg1;
-        };
-        "markdown.heading.1" = {
+        "markup.heading.1" = {
           fg = blue;
           modifiers = [ "bold" ];
         };
         "markup.heading.2" = {
           fg = yellow;
+          modifiers = [ "bold" ];
         };
         "markup.heading.3" = {
           fg = fg;
+          modifiers = [ "bold" ];
         };
         "markup.heading.4" = {
           fg = fg;
+          modifiers = [ "bold" ];
+        };
+        "markup.list.checked" = {
+          fg = fg1;
+        };
+        "markup.raw.block" = {
+          bg = bg0;
         };
         "diff.plus" = {
           fg = green-dark;

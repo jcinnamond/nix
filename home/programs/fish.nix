@@ -55,7 +55,7 @@ in
       '';
 
       enableTheme = with colors; ''
-        set --universal fish_color_autosuggestion ${fg1} 
+        set --universal fish_color_autosuggestion ${fg2} 
         set --universal fish_color_command        ${cyan-light} 
         set --universal fish_color_comment        ${fg1} 
         set --universal fish_color_cwd            ${yellow} 

@@ -31,7 +31,6 @@ in
     bat
     bc
     feh
-    gitu
     jq
     kitty
     marksman
@@ -68,11 +67,12 @@ in
   imports = [
     ./home/services/polybar/polybar.nix
     ./home/services/wired
-    ./home/programs/xmonad/xmonad.nix
     ./home/programs/fish.nix
-    ./home/programs/kitty.nix
+    ./home/programs/gitu.nix
     ./home/programs/helix.nix
+    ./home/programs/kitty.nix
     ./home/programs/rofi.nix
+    ./home/programs/xmonad/xmonad.nix
     ./home/style/default.nix
   ];
 

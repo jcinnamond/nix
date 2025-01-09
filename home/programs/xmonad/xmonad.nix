@@ -5,6 +5,7 @@ let
 in
 {
   home.packages = with pkgs; [
+    feh
     libnotify
     pasystray
     ponymix
@@ -18,6 +19,7 @@ in
     initExtra = ''
       ${pkgs.blueman}/bin/blueman-applet &
       ${pkgs.pasystray}/bin/pasystray &
+      ${pkgs.feh}/bin/feh --no-fehbg --bg-scale ~/wallpaper.png
     '';
 
     windowManager.xmonad = {

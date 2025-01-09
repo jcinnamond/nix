@@ -47,6 +47,7 @@ in
     nil
 
     _1password-gui
+    kuro
     libreoffice
     mpv
     pavucontrol

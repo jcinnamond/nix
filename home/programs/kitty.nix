@@ -1,8 +1,11 @@
 { lib, config, ... }:
+let
+  fonts = config.style.fonts;
+in
 {
   programs.kitty = {
     enable = true;
-    font.name = lib.mkForce "MonoLisa jc";
+    font.name = fonts.monospaced;
     font.size = 12;
     shellIntegration.enableFishIntegration = true;
     keybindings = {

@@ -1,11 +1,21 @@
-{ config, lib, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 with lib;
 {
+  config.home.packages = with pkgs; [
+    inter-nerdfont
+    monolisa-jc
+  ];
+
   options.style.fonts = {
-    default = mkOption {
+    monospaced = mkOption {
       type = types.nonEmptyStr;
       description = "standard monospaced font";
-      default = "MonolisaJc";
+      default = "MonoLisa jc";
     };
     size = mkOption {
       type = types.int;
@@ -15,12 +25,12 @@ with lib;
     nerdfont = mkOption {
       type = types.nonEmptyStr;
       description = "monospaced font with nerdfont patches";
-      default = "${config.style.fonts.default} Nerd Font";
+      default = "MonoLisaJc Nerd Font";
     };
     variableWidth = mkOption {
       type = types.nonEmptyStr;
       description = "standard font";
-      default = "DejaVu Sans";
+      default = "Inter Nerd Font";
     };
     heading = mkOption {
       type = types.nonEmptyStr;

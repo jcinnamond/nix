@@ -135,10 +135,6 @@
     base16-schemes
   ];
 
-  fonts.packages = [
-    pkgs.monolisa-jc
-  ];
-
   # Scanner
   hardware.sane = {
     enable = true;

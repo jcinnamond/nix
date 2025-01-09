@@ -46,7 +46,7 @@ with lib;
           inactiveBorder = "222222";
         }
       '';
-      default = import ./${config.style.colors.schemeName}.nix;
+      default = import ./colors/${config.style.colors.schemeName}.nix;
     };
     withHash = mkOption {
       type = types.attrsOf types.str;

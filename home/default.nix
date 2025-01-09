@@ -65,15 +65,15 @@ in
   ];
 
   imports = [
-    ./home/services/polybar/polybar.nix
-    ./home/services/wired
-    ./home/programs/fish.nix
-    ./home/programs/gitu.nix
-    ./home/programs/helix.nix
-    ./home/programs/kitty.nix
-    ./home/programs/rofi.nix
-    ./home/programs/xmonad/xmonad.nix
-    ./home/style/default.nix
+    ./services/polybar/polybar.nix
+    ./services/wired
+    ./programs/fish.nix
+    ./programs/gitu.nix
+    ./programs/helix.nix
+    ./programs/kitty.nix
+    ./programs/rofi.nix
+    ./programs/xmonad/xmonad.nix
+    ./style/default.nix
   ];
 
   style.colors.schemeName = "jc";

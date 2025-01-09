@@ -44,7 +44,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.jc = import ./home.nix;
+            home-manager.users.jc = import ./home/default.nix;
             home-manager.sharedModules = [ wired.homeManagerModules.default ];
           }
         ];

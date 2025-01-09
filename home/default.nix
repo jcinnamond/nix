@@ -31,6 +31,7 @@ in
     bat
     bc
     feh
+    fzf
     jq
     kitty
     marksman

@@ -1,4 +1,4 @@
-{ config, ... }:
+{ pkgs, config, ... }:
 let
   colors = config.style.colors.scheme;
 in
@@ -9,8 +9,19 @@ in
       set fish_greeting ;
       enableTheme ;
     '';
+    plugins = with pkgs.fishPlugins; [
+      {
+        name = "fzf";
+        src = fzf.src;
+      }
+      {
+        name = "z";
+        src = z.src;
+      }
+    ];
     shellAbbrs = {
       dev = "nix develop";
+      flake = "nix flake";
       ns = "nix search nixpkgs";
       nsh = {
         setCursor = true;

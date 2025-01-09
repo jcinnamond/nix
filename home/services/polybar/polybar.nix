@@ -17,22 +17,43 @@ in
     settings = with colors; {
       "colors" = {
         background = "#00000000";
+        bg = bg;
         foreground = fg;
+        dateForeground = fg;
         dimmed = fg2;
         alert = alert;
         active = selection;
       };
       "fonts" = with fonts; {
-        default = nerdfont;
+        font-0 = "${nerdfont}";
+        font-1 = "${variableWidth}:size=13;2";
+        font-2 = "${nerdfont}:size=13;2";
       };
     };
-    extraConfig = ''
-      [module/now-playing]
-      type = custom/script
-      format = <label>
-      exec = ${nowPlayingLocation}
-      interval = 1
-    '';
+    extraConfig =
+      with pkgs;
+      with colors;
+      ''
+        [module/now-playing]
+        type = custom/script
+        format = <label>
+        exec = ${nowPlayingLocation}
+        interval = 1
+        label-font = 2
+
+        [module/date]
+        type = custom/script
+        exec = ${coreutils}/bin/date +" %a %d %h %-I:%M %P "
+        interval = 60
+        label-foreground = ${fg0}
+        label-background = ${bg0}
+        label-font = 2
+        format-font = 3
+        format-prefix = ""
+        format-prefix-foreground = ${bg0}
+        format-suffix = ""
+        format-suffix-foreground = ${bg0}
+      '';
   };
   home.file."${nowPlayingLocation}" = {
     text = ''

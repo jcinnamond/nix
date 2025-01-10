@@ -23,27 +23,37 @@ in
         skip-levels = 1;
       };
     };
-    languages.language = [
-      {
-        name = "haskell";
-        auto-format = true;
-        formatter.command = "fourmolu";
-        formatter.args = [
-          "--stdin-input-file"
-          "."
-        ];
-      }
-      {
-        name = "cabal";
-        auto-format = true;
-        formatter.command = "cabal-fmt";
-      }
-      {
-        name = "nix";
-        auto-format = true;
-        formatter.command = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
-      }
-    ];
+    languages = {
+      language-server.fish-lsp = with pkgs; {
+        command = "${fish-lsp}/bin/fish-lsp";
+        args = [ "start" ];
+      };
+      language = [
+        {
+          name = "haskell";
+          auto-format = true;
+          formatter.command = "fourmolu";
+          formatter.args = [
+            "--stdin-input-file"
+            "."
+          ];
+        }
+        {
+          name = "cabal";
+          auto-format = true;
+          formatter.command = "cabal-fmt";
+        }
+        {
+          name = "nix";
+          auto-format = true;
+          formatter.command = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
+        }
+        {
+          name = "fish";
+          language-servers = [ "fish-lsp" ];
+        }
+      ];
+    };
 
     themes = {
       jc = with colors; {

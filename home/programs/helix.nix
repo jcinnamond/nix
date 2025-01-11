@@ -22,6 +22,11 @@ in
         character = "┊";
         skip-levels = 1;
       };
+      editor.end-of-line-diagnostics = "hint";
+      editor.inline-diagnostics = {
+        cursor-line = "error";
+        other-lines = "error";
+      };
     };
     languages = {
       language-server.fish-lsp = with pkgs; {

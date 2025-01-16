@@ -8,7 +8,12 @@ build-type:      Simple
 extra-doc-files: CHANGELOG.md
 
 common warnings
-  ghc-options: -Wall
+  ghc-options:        -Wall
+  default-extensions:
+    FlexibleContexts
+    ImportQualifiedPost
+    MultiParamTypeClasses
+    TypeSynonymInstances
 
 executable my-xmonad
   import:           warnings

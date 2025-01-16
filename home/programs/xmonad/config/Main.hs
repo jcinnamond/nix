@@ -1,9 +1,4 @@
-{-# LANGUAGE ImportQualifiedPost #-}
-{-# LANGUAGE MultiParamTypeClasses #-}
-{-# HLINT ignore "Move brackets to avoid $" #-}
-{-# LANGUAGE TypeSynonymInstances #-}
-{-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
-
+{-# OPTIONS_GHC -Wno-missing-signatures #-}
 module Main where
 
 import Data.List (isPrefixOf)
@@ -11,7 +6,7 @@ import Data.Map qualified as M
 import Nix qualified
 import System.Exit (exitSuccess)
 import Volume qualified
-import XMonad (Button, ButtonMask, ChangeLayout (..), IncMasterN (..), KeyMask, KeySym, ManageHook, Query, Window, X, XConfig (..), button1, button3, className, composeAll, doF, doFloat, doShift, focus, io, kill, mod1Mask, mod4Mask, mouseMoveWindow, mouseResizeWindow, noModMask, runQuery, sendMessage, shiftMask, spawn, stringToKeysym, title, windows, withFocused, xK_Escape, xK_F4, xK_Left, xK_Right, xK_Tab, xK_a, xK_comma, xK_e, xK_equal, xK_i, xK_k, xK_l, xK_m, xK_n, xK_period, xK_q, xK_r, xK_s, xK_space, xK_z, xmonad, (-->), (.|.), (<+>), (=?), (|||))
+import XMonad (Button, ButtonMask, ChangeLayout (..), IncMasterN (..), KeyMask, KeySym, ManageHook, Query, Window, X, XConfig (..), button1, button3, className, composeAll, doF, doShift, focus, io, kill, mod1Mask, mod4Mask, mouseMoveWindow, mouseResizeWindow, noModMask, runQuery, sendMessage, shiftMask, spawn, stringToKeysym, title, windows, withFocused, xK_Escape, xK_F4, xK_Left, xK_Right, xK_Tab, xK_a, xK_comma, xK_e, xK_equal, xK_i, xK_l, xK_m, xK_n, xK_period, xK_q, xK_r, xK_s, xK_space, xK_z, xmonad, (-->), (.|.), (<+>), (=?), (|||), stringProperty)
 import XMonad.Actions.CopyWindow (copyToAll)
 import XMonad.Actions.PerWorkspaceKeys (bindOn)
 import XMonad.Actions.WindowGo (raiseNext)
@@ -20,6 +15,7 @@ import XMonad.Hooks.ManageDocks (avoidStruts, docks)
 import XMonad.Layout (Tall (..))
 import XMonad.Layout.BoringWindows (boringWindows, focusMaster, focusUp)
 import XMonad.Layout.CenteredIfSingle (centeredIfSingle)
+import XMonad.Layout.ComboP (Property (Role))
 import XMonad.Layout.Grid (Grid (..))
 import XMonad.Layout.LayoutBuilder (Predicate (..), absBox, layoutAll, layoutP, layoutR)
 import XMonad.Layout.Maximize (maximizeRestore, maximizeWithPadding)
@@ -51,7 +47,6 @@ myManageHook =
         [ isStreaming --> doShift "streaming"
         , className =? "Spotify" --> doShift "music"
         , className =? "Signal" --> doShift "chat"
-        , title =? "Picture-in-Picture" --> doFloat
         , title =? "Picture-in-Picture" --> doF copyToAll
         ]
 
@@ -118,9 +113,10 @@ theme config =
 myLayout = windowNavigation $ avoidStruts $ maximizeWithPadding 0 $ spaceWindows $ boringWindows layouts
   where
     layouts =
-        onWorkspace "streaming" streaming $
+        streaming
             ( centeredIfSingle 0.7 0.9 (ThreeColMid 1 (1 / 100) (1 / 2))
                 ||| centeredIfSingle 0.7 0.92 (Tall 1 (1 / 100) (1 / 2))
+                ||| centeredIfSingle 0.7 0.9 video
             )
     spaceWindows = spacingRaw True (Border 0 0 0 0) False (Border 5 5 5 5) True
 
@@ -128,15 +124,27 @@ myLayout = windowNavigation $ avoidStruts $ maximizeWithPadding 0 $ spaceWindows
         let
             castingWidth = 1920
             castingHeight = 1080
-            screenWidth = 3440
-            screenHeight = 1440
             spareX = screenWidth - castingWidth
             colWidth = spareX `div` 2
             spareY = screenHeight - castingHeight
          in
-            layoutP Streaming (absBox colWidth (spareY `div` 3) castingWidth castingHeight) Nothing Simplest $
-                layoutR 0.1 0.5 (absBox 0 0 colWidth screenHeight) Nothing simpleTabbed $
-                    layoutAll (absBox (screenWidth - colWidth) 0 colWidth screenHeight) Grid
+            onWorkspace "streaming" $
+                layoutP Streaming (absBox colWidth (spareY `div` 3) castingWidth castingHeight) Nothing Simplest $
+                    layoutR 0.1 0.5 (absBox 0 0 colWidth screenHeight) Nothing simpleTabbed $
+                        layoutAll (absBox (screenWidth - colWidth) 0 colWidth screenHeight) Grid
+
+    video =
+        let
+            videoWidth = 800
+            videoHeight = 450
+            videoX = screenWidth - videoWidth
+            videoY = (screenHeight - videoHeight) `div` 3
+         in
+            layoutP (Role "PictureInPicture") (absBox videoX videoY videoWidth videoHeight) Nothing Simplest $
+                layoutAll (absBox 10 0 2623 screenHeight) (Tall 1 (1 / 100) (1 / 2))
+
+    screenWidth = 3440
+    screenHeight = 1440
 
 isStreaming :: Query Bool
 isStreaming = do
@@ -148,3 +156,7 @@ data Streaming = Streaming
 instance Predicate Streaming Window where
     alwaysTrue _ = Streaming
     checkPredicate _ = runQuery isStreaming
+
+
+role :: Query String
+role = stringProperty "role"

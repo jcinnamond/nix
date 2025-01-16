@@ -17,7 +17,7 @@ import XMonad.Layout.BoringWindows (boringWindows, focusMaster, focusUp)
 import XMonad.Layout.CenteredIfSingle (centeredIfSingle)
 import XMonad.Layout.ComboP (Property (Role))
 import XMonad.Layout.Grid (Grid (..))
-import XMonad.Layout.LayoutBuilder (Predicate (..), absBox, layoutAll, layoutP, layoutR)
+import XMonad.Layout.LayoutBuilder (Predicate (..), absBox, layoutAll, layoutP, layoutR, relBox, layoutN)
 import XMonad.Layout.Maximize (maximizeRestore, maximizeWithPadding)
 import XMonad.Layout.PerWorkspace (onWorkspace)
 import XMonad.Layout.ShowWName
@@ -114,11 +114,13 @@ myLayout = windowNavigation $ avoidStruts $ maximizeWithPadding 0 $ spaceWindows
   where
     layouts =
         streaming
-            ( centeredIfSingle 0.7 0.9 (ThreeColMid 1 (1 / 100) (1 / 2))
-                ||| centeredIfSingle 0.7 0.92 (Tall 1 (1 / 100) (1 / 2))
-                ||| centeredIfSingle 0.7 0.9 video
+            ( centerSingle centerMain
+                ||| centerSingle (Tall 1 (1 / 100) (1 / 2))
+                ||| centerSingle video
             )
     spaceWindows = spacingRaw True (Border 0 0 0 0) False (Border 5 5 5 5) True
+
+    centerSingle = centeredIfSingle 0.7 0.9
 
     streaming =
         let
@@ -133,12 +135,21 @@ myLayout = windowNavigation $ avoidStruts $ maximizeWithPadding 0 $ spaceWindows
                     layoutR 0.1 0.5 (absBox 0 0 colWidth screenHeight) Nothing simpleTabbed $
                         layoutAll (absBox (screenWidth - colWidth) 0 colWidth screenHeight) Grid
 
+    centerMain = 
+        let
+            mainWidth = screenWidth `div` 2
+            sideWidth = screenWidth `div` 4
+        in
+            (layoutN 1 (absBox sideWidth 0 mainWidth screenHeight) (Just $ relBox 0 0 1 1) Simplest) $
+            (layoutR 0.1 0.5 (absBox (sideWidth + mainWidth) 0 sideWidth screenHeight) Nothing $ Tall 1 (1/100) (1/2)) $
+            layoutAll (absBox 0 0 sideWidth screenHeight) $ Tall 0 (1/100) (1/2)
+
     video =
         let
             videoWidth = 800
             videoHeight = 450
             videoX = screenWidth - videoWidth
-            videoY = (screenHeight - videoHeight) `div` 3
+            videoY = (screenHeight - videoHeight) `div` 5
          in
             layoutP (Role "PictureInPicture") (absBox videoX videoY videoWidth videoHeight) Nothing Simplest $
                 layoutAll (absBox 10 0 2623 screenHeight) (Tall 1 (1 / 100) (1 / 2))

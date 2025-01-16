@@ -182,7 +182,6 @@ in
 
         "string" = {
           fg = fg0;
-          modifiers = [ "italic" ];
         };
         "keyword" = {
           fg = fg;
@@ -234,6 +233,12 @@ in
         };
         "diff.delta" = {
           fg = bg2;
+        };
+        "keyword.control.import" = {
+          fg = fg1;
+        };
+        "namespace" = {
+          fg = fg0;
         };
       };
     };

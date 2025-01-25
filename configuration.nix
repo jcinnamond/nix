@@ -145,6 +145,11 @@
 
   services.udisks2.enable = true;
 
+  fileSystems."/mnt/synology" = {
+    device = "synology:/volume1/storage";
+    fsType = "nfs";
+  };
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;

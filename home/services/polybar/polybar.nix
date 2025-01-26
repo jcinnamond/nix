@@ -69,8 +69,11 @@ in
           "spotify")
             echo -n "󰝚"
             ;;
+          "chromium")
+            echo -n ""
+            ;;
           "firefox")
-            echo -n ""
+            echo -n ""
             ;;
           *)
             echo -n "($source)"
@@ -85,14 +88,16 @@ in
       fi
 
       if [[ $playerctlstatus == "Playing" ]]; then
-        echo -n "%{F${colors.fg}}▶ $(mediasource)  "
-        durationcolor="${colors.fg1}"
+        echo -n "%{F#e8e8d1} "
+        sourcecolor="#e8e8d1"
+        durationcolor="#818178"
       else 
-        echo -n "%{F${colors.fg2}} $(mediasource)  "
-        durationcolor="${colors.fg2}"
+        echo -n "%{F#555555} "
+        sourcecolor="#555555"
+        durationcolor="#555555"
       fi
 
-      $playerctl metadata --format "{{artist}}: {{title}} %{F$durationcolor}({{duration(position)}}/{{duration(mpris:length)}})"
+      $playerctl metadata --format "{{artist}}: {{title}} %{F$durationcolor}({{duration(position)}}/{{duration(mpris:length)}}) %{F$sourcecolor}$(mediasource) "
     '';
     executable = true;
   };

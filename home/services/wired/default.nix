@@ -29,7 +29,7 @@ in
                   parent: "",
                   hook: Hook(parent_anchor: TR, self_anchor: TR),
                   offset: Vec2(x: 5.0, y: 30.0),
-                  render_anti_criteria: [ Or([AppName("Spotify"), Tag("volume")]) ],
+                  render_anti_criteria: [ Or([AppName("Spotify"), AppName("YouTube Music Desktop App"), Tag("volume")]) ],
                   params: NotificationBlock((
                       monitor: 0,
                       border_width: 2,
@@ -96,11 +96,11 @@ in
               ),
 
       		(
-      			name: "spotify",
+      			name: "music",
       			parent: "",
       			offset: (x: 0, y: -40),
       			hook: Hook(parent_anchor: BM, self_anchor: BM),
-      			render_criteria: [ AppName("Spotify") ],
+      			render_criteria: [ Or([AppName("Spotify"), AppName("YouTube Music Desktop App")]) ],
       			params: NotificationBlock((
       				monitor: 0,
                       border_width: 0.0,
@@ -113,8 +113,8 @@ in
       			)),
       		),
       		(
-      			name: "spotify-image",
-      			parent: "spotify",
+      			name: "music-image",
+      			parent: "music",
                   hook: Hook(parent_anchor: TL, self_anchor: TL),
                   offset: Vec2(x: 0, y: 0),
                   params: ImageBlock((
@@ -128,8 +128,8 @@ in
                   )),
       		),
               (
-                  name: "spotify-summary",
-                  parent: "spotify-image",
+                  name: "music-summary",
+                  parent: "music-image",
                   hook: Hook(parent_anchor: MR, self_anchor: BL),
                   offset: Vec2(x: 0.0, y: 0.0),
                   params: TextBlock((
@@ -143,8 +143,8 @@ in
                   )),
               ),
               (
-                  name: "spotify-body",
-                  parent: "spotify-summary",
+                  name: "music-body",
+                  parent: "music-summary",
                   hook: Hook(parent_anchor: BL, self_anchor: TL),
                   offset: Vec2(x: 0.0, y: 12.0),
                   params: ScrollingTextBlock((

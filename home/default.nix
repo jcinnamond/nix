@@ -59,6 +59,7 @@ in
     skypeforlinux
     spotify
     streamcontroller
+    ytmdesktop
     zathura
 
     font-awesome

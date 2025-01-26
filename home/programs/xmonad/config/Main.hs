@@ -46,6 +46,7 @@ myManageHook =
     composeAll
         [ isStreaming --> doShift "streaming"
         , className =? "Spotify" --> doShift "music"
+        , className =? "YouTube Music Desktop App" --> doShift "music"
         , className =? "Signal" --> doShift "chat"
         , title =? "Picture-in-Picture" --> doF copyToAll
         ]

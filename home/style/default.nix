@@ -5,5 +5,5 @@
     ./fonts.nix
   ];
 
-  home.file."wallpaper.png".source = ./wallpapers/forest.png;
+  home.file."wallpaper.png".source = ./wallpapers/moon.jpg;
 }

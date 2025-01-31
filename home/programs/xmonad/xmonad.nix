@@ -6,11 +6,12 @@ in
 {
   home.packages = with pkgs; [
     feh
+    flameshot
     libnotify
+    nautilus
     pasystray
     ponymix
     pulseaudio
-    nautilus
   ];
 
   xsession = {
@@ -19,6 +20,7 @@ in
     initExtra = ''
       ${pkgs.blueman}/bin/blueman-applet &
       ${pkgs.pasystray}/bin/pasystray &
+      ${pkgs.flameshot}/bin/flameshot &
       ${pkgs.feh}/bin/feh --no-fehbg --bg-center ~/wallpaper.png
     '';
 

@@ -27,6 +27,10 @@ in
         cursor-line = "error";
         other-lines = "error";
       };
+      editor.jump-label-alphabet = "tnseriaogmfuwydhc,x.";
+      keys.normal = {
+        "ret" = "goto_word";
+      };
     };
     languages = {
       language-server.fish-lsp = with pkgs; {
@@ -136,6 +140,7 @@ in
         "ui.virtual.ruler" = {
           bg = bg0;
         };
+        "ui.virtual.jump-label" = selection;
 
         "warning" = {
           fg = yellow;

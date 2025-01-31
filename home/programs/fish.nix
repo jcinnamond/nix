@@ -45,13 +45,28 @@ in
         '';
       };
       fish_prompt = with colors; ''
-        set -l nix_shell_info (
-          if test -n "$IN_NIX_SHELL" || test $SHLVL -gt 2 # for some reason SHLVL seems to be 2 for a normal shell
-            _prompt_powerline "nix shell " $fish_color_prompt2_bg $fish_color_prompt2_fg $fish_color_prompt_bg
+        set -l promptbg (
+          if test $status -eq 0
+            printf $fish_color_prompt_bg
+          else
+            printf ${alert}
           end
         )
 
-        set -l pwd (_prompt_powerline (prompt_pwd) $fish_color_prompt_bg $fish_color_prompt_fg ${bg}) \
+        set -l nix_shell_info (
+          if test -n "$IN_NIX_SHELL" || test $SHLVL -gt 2 # for some reason SHLVL seems to be 2 for a normal shell
+            _prompt_powerline "nix shell " $fish_color_prompt2_bg $fish_color_prompt2_fg $promptbg
+          end
+        )
+
+        set -l pwd (_prompt_powerline (prompt_pwd) $promptbg $fish_color_prompt_fg ${bg}) \
+
+        set -l jobs_info (
+          set -l jobcount (jobs | wc -l)
+          if test $jobcount -gt 0
+            string join "" -- (set_color ${fg1}) "[" $jobcount "] " (set_color normal)
+          end
+        )
 
         string join "" -- \
           $jobs_info \

@@ -48,6 +48,7 @@ myManageHook =
         , className =? "Spotify" --> doShift "music"
         , className =? "YouTube Music Desktop App" --> doShift "music"
         , className =? "Signal" --> doShift "chat"
+        , className =? "zoom" --> doShift "chat"
         , title =? "Picture-in-Picture" --> doF copyToAll
         ]
 

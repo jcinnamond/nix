@@ -61,6 +61,7 @@ in
     streamcontroller
     ytmdesktop
     zathura
+    zoom-us
 
     font-awesome
     nerd-font-patcher

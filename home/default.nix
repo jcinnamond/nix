@@ -31,6 +31,7 @@ in
     bat
     bc
     feh
+    file
     fzf
     jq
     kitty

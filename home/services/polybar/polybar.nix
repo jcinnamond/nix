@@ -26,8 +26,8 @@ in
       };
       "fonts" = with fonts; {
         font-0 = "${nerdfont}";
-        font-1 = "${variableWidth}:size=13;2";
-        font-2 = "${nerdfont}:size=13;2";
+        font-1 = "${variableWidth}:size=13;3";
+        font-2 = "${nerdfont}:size=17;5";
       };
     };
     extraConfig =
@@ -49,6 +49,7 @@ in
         label-background = ${bg0}
         label-font = 2
         format-font = 3
+        format-suffix-font = 3
         format-prefix = ""
         format-prefix-foreground = ${bg0}
         format-suffix = ""

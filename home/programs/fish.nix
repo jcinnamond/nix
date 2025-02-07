@@ -54,7 +54,7 @@ in
         )
 
         set -l nix_shell_info (
-          if test -n "$IN_NIX_SHELL" || test $SHLVL -gt 2 # for some reason SHLVL seems to be 2 for a normal shell
+          if test -n "$IN_NIX_SHELL" 
             _prompt_powerline "nix shell " $fish_color_prompt2_bg $fish_color_prompt2_fg $promptbg
           end
         )

@@ -77,6 +77,7 @@ in
     ./programs/helix.nix
     ./programs/kitty.nix
     ./programs/rofi.nix
+    ./programs/tmux.nix
     ./programs/xmonad/xmonad.nix
     ./style/default.nix
   ];

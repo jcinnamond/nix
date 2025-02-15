@@ -6,7 +6,7 @@ import Data.Map qualified as M
 import Nix qualified
 import System.Exit (exitSuccess)
 import Volume qualified
-import XMonad (Button, ButtonMask, ChangeLayout (..), IncMasterN (..), KeyMask, KeySym, ManageHook, Query, Window, X, XConfig (..), button1, button3, className, composeAll, doF, doShift, focus, io, kill, mod1Mask, mod4Mask, mouseMoveWindow, mouseResizeWindow, noModMask, runQuery, sendMessage, shiftMask, spawn, stringToKeysym, title, windows, withFocused, xK_Escape, xK_F4, xK_Left, xK_Right, xK_Tab, xK_a, xK_comma, xK_e, xK_equal, xK_i, xK_l, xK_m, xK_n, xK_period, xK_q, xK_r, xK_s, xK_space, xK_z, xmonad, (-->), (.|.), (<+>), (=?), (|||), stringProperty)
+import XMonad (Button, ButtonMask, ChangeLayout (..), IncMasterN (..), KeyMask, KeySym, ManageHook, Query, Window, X, XConfig (..), button1, button3, className, composeAll, doF, doShift, focus, io, kill, mod1Mask, mod4Mask, mouseMoveWindow, mouseResizeWindow, noModMask, runQuery, sendMessage, shiftMask, spawn, stringToKeysym, title, windows, withFocused, xK_Escape, xK_F4, xK_Left, xK_Right, xK_Tab, xK_a, xK_comma, xK_e, xK_equal, xK_i, xK_l, xK_m, xK_n, xK_period, xK_q, xK_r, xK_s, xK_space, xK_z, xmonad, (-->), (.|.), (<+>), (=?), (|||), stringProperty, xK_t)
 import XMonad.Actions.CopyWindow (copyToAll)
 import XMonad.Actions.PerWorkspaceKeys (bindOn)
 import XMonad.Actions.WindowGo (raiseNext)
@@ -24,7 +24,6 @@ import XMonad.Layout.ShowWName
 import XMonad.Layout.Simplest (Simplest (..))
 import XMonad.Layout.Spacing (Border (..), spacingRaw)
 import XMonad.Layout.Tabbed (simpleTabbed)
-import XMonad.Layout.ThreeColumns (ThreeCol (..))
 import XMonad.Layout.WindowNavigation (windowNavigation)
 import XMonad.StackSet qualified as W
 
@@ -71,6 +70,7 @@ wmKeys =
     , ((mod4Mask, xK_Right), windows W.swapDown)
     , ((mod4Mask, xK_Escape), windows W.swapMaster)
     , ((mod4Mask, xK_m), withFocused (sendMessage . maximizeRestore))
+    , ((mod4Mask, xK_t), withFocused $ windows . W.sink)
     , ((mod1Mask, xK_F4), kill)
     , ((mod4Mask, xK_l), sendMessage NextLayout)
     , -- System control
@@ -118,7 +118,7 @@ myLayout = windowNavigation $ avoidStruts $ maximizeWithPadding 0 $ spaceWindows
         streaming
             ( centerSingle centerMain
                 ||| centerSingle (Tall 1 (1 / 100) (1 / 2))
-                ||| centerSingle video
+                ||| centerSingle (video (Tall 1 (1/100) (1/2)))
             )
     spaceWindows = spacingRaw True (Border 0 0 0 0) False (Border 5 5 5 5) True
 
@@ -146,15 +146,15 @@ myLayout = windowNavigation $ avoidStruts $ maximizeWithPadding 0 $ spaceWindows
             (layoutR 0.1 0.5 (absBox (sideWidth + mainWidth) 0 sideWidth screenHeight) Nothing $ Tall 1 (1/100) (1/2)) $
             layoutAll (absBox 0 0 sideWidth screenHeight) $ Tall 0 (1/100) (1/2)
 
-    video =
+    video l =
         let
-            videoWidth = 800
-            videoHeight = 450
+            videoWidth = 1200
+            videoHeight = videoWidth `div` 16 * 9
             videoX = screenWidth - videoWidth
             videoY = (screenHeight - videoHeight) `div` 5
          in
             layoutP (Role "PictureInPicture") (absBox videoX videoY videoWidth videoHeight) Nothing Simplest $
-                layoutAll (absBox 10 0 2623 screenHeight) (Tall 1 (1 / 100) (1 / 2))
+                layoutAll (absBox 0 0 (videoX - 5) screenHeight) l
 
     screenWidth = 3440
     screenHeight = 1440

@@ -79,6 +79,7 @@ in
     ./programs/rofi.nix
     ./programs/tmux.nix
     ./programs/xmonad/xmonad.nix
+    ./programs/zsh
     ./style/default.nix
   ];
 

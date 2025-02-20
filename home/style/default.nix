@@ -5,5 +5,5 @@
     ./fonts.nix
   ];
 
-  home.file."wallpaper.png".source = ./wallpapers/moon.jpg;
+  home.file."wallpaper.png".source = ./wallpapers/milky-way.png;
 }

@@ -31,10 +31,6 @@
             xorg.libXScrnSaver
             xorg.libXext
           ];
-
-          shellHook = ''
-            exec fish
-          '';
         };
     };
 }

@@ -8,7 +8,7 @@ in
     enable = true;
     enableCompletion = true;
     autosuggestion.enable = true;
-    defaultKeymap = "vicmd";
+    defaultKeymap = "viins";
     sessionVariables = {
       ABBR_SET_EXPANSION_CURSOR = 1;
     };
@@ -41,7 +41,7 @@ in
 
       function nix_shell() {
         if test -n "$IN_NIX_SHELL";
-        then echo "%K{#${bg2}}nix shell %k" 
+        then echo "%K{#${bg2}}nix shell %k"
         fi
       }
 

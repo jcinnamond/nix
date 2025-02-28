@@ -7,6 +7,7 @@ in
     enable = true;
     mouse = true;
     keyMode = "vi";
+    historyLimit = 5000;
     extraConfig = with colors; ''
       unbind-key C-o
       bind-key C-o select-pane -t :.+

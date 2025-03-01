@@ -1,0 +1,112 @@
+autoload -Uz vcs_info
+zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:*' unstagedstr '+'
+zstyle ':vcs_info:*' stagedstr '*'
+zstyle ':vcs_info:*' formats "%b %u%c"
+
+function _prompt_pill_start() {
+	local bg=$1
+	echo -n "%K{$color_bg}%F{$bg}%f%k"
+}
+
+function _prompt_pill_end() {
+	local bg=$1
+	echo -n "%K{$color_bg}%F{$bg}%f%k"
+}
+
+function _prompt_git() {
+    local branch=$(git branch --show-current 2>/dev/null)
+	if test -z "$branch"; then
+	  return
+	fi
+	local bg=$color_git_clean_bg
+	local fg=$color_git_clean_fg
+	if test -n "$(git status --porcelain)"; then
+		bg=$color_git_dirty_bg
+		fg=$color_git_dirty_fg
+	fi
+
+    echo -n "%K{$color_cwd_bg}%F{$bg}%f%k"
+	echo -n "%K{$bg}%F{$fg} $branch %f%k"
+	_prompt_pill_end $bg
+}
+
+function _prompt_cwd() {
+	_prompt_pill_start $color_cwd_bg
+	echo -n "%K{$color_cwd_bg}%F{$color_cwd_fg} %~ %f%k"
+	local git_prompt=$(_prompt_git)
+	if test -n "$git_prompt"; then
+		echo -n "$git_prompt"
+	else
+		_prompt_pill_end $color_cwd_bg
+	fi
+}
+
+function _prompt_nix_shell() {
+	if test -n "$IN_NIX_SHELL"; then
+	  _prompt_pill_start $color_nix_shell_bg
+	  echo -n "%K{$color_nix_shell_bg}%F{$color_nix_shell_fg} nix shell %f%k"
+	  _prompt_pill_end $color_nix_shell_bg
+	fi
+}
+
+function _prompt() {
+	local last_status=$?
+	if (( $_prompt_compact )); then
+	  local fg=$color_success
+	  if test $last_status -ne 0; then
+	    fg=$color_error
+	  fi
+	  echo "%F{$fg}%f "
+	  return
+	fi
+
+	echo -n "\n$(_prompt_cwd)  $(_prompt_nix_shell)\n> "
+}
+
+function() _rprompt() {
+	if (( $_prompt_compact )); then
+	  echo -n "%t %D"
+	fi
+}
+
+setopt PROMPT_SUBST
+PROMPT='$(_prompt)'
+RPROMPT='$(_rprompt)'
+
+#PROMPT=' ${NEWLINE}$(_prompt_cwd) %(1j.%F{#${fg1}}[%j] %f.)%F{#${cyan}}%~%f''${NEWLINE}$(nix_shell)%(?.%K{#${bg2}}.%K{#${alert}})%F{#${bg}}%f%k '
+
+# Taken from https://vincent.bernat.ch/en/blog/2021-zsh-transient-prompt, which
+# in turn is taken from powerline10k
+_zle-line-init() {
+    [[ $CONTEXT == start ]] || return 0
+
+    # Start regular line editor
+    (( $+zle_bracketed_paste )) && print -r -n - $zle_bracketed_paste[1]
+    zle .recursive-edit
+    local -i ret=$?
+    (( $+zle_bracketed_paste )) && print -r -n - $zle_bracketed_paste[2]
+
+    # If we received EOT, we exit the shell
+    if [[ $ret == 0 && $KEYS == $'\4' ]]; then
+        _vbe_prompt_compact=1
+        zle .reset-prompt
+        exit
+    fi
+
+    # Line edition is over. Shorten the current prompt.
+    _prompt_compact=1
+    zle .reset-prompt
+    unset _prompt_compact
+
+    if (( ret )); then
+        # Ctrl-C
+        zle .send-break
+    else
+        # Enter
+        zle .accept-line
+    fi
+    return ret
+}
+zle -N zle-line-init _zle-line-init

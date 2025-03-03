@@ -28,6 +28,7 @@ in
       color_fg=${bg}
       color_success=${green}
       color_error=${red}
+      color_prompt_previous=${fg1}
       color_cwd_bg=${blue-dark}
       color_cwd_fg=${fg}
       color_git_clean_bg=${bg2}

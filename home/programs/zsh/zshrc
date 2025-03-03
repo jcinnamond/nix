@@ -54,28 +54,26 @@ function _prompt_nix_shell() {
 function _prompt() {
 	local last_status=$?
 	if (( $_prompt_compact )); then
-	  local fg=$color_success
+	  local fg=$color_prompt_previous
 	  if test $last_status -ne 0; then
 	    fg=$color_error
 	  fi
-	  echo "%F{$fg}%f "
+	  echo -n "%F{$fg}%f %F{$color_prompt_previous}%~%f  "
 	  return
 	fi
 
-	echo -n "\n$(_prompt_cwd)  $(_prompt_nix_shell)\n> "
+	echo -n "\n$(_prompt_cwd)  $(_prompt_nix_shell)\n "
 }
 
 function() _rprompt() {
 	if (( $_prompt_compact )); then
-	  echo -n "%t %D"
+	  echo -n "%F{$color_prompt_previous}%D %t%f"
 	fi
 }
 
 setopt PROMPT_SUBST
 PROMPT='$(_prompt)'
 RPROMPT='$(_rprompt)'
-
-#PROMPT=' ${NEWLINE}$(_prompt_cwd) %(1j.%F{#${fg1}}[%j] %f.)%F{#${cyan}}%~%f''${NEWLINE}$(nix_shell)%(?.%K{#${bg2}}.%K{#${alert}})%F{#${bg}}%f%k '
 
 # Taken from https://vincent.bernat.ch/en/blog/2021-zsh-transient-prompt, which
 # in turn is taken from powerline10k
@@ -90,7 +88,7 @@ _zle-line-init() {
 
     # If we received EOT, we exit the shell
     if [[ $ret == 0 && $KEYS == $'\4' ]]; then
-        _vbe_prompt_compact=1
+        _prompt_compact=1
         zle .reset-prompt
         exit
     fi

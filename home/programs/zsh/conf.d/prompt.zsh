@@ -1,10 +1,3 @@
-autoload -Uz vcs_info
-zstyle ':vcs_info:*' enable git
-zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:*' unstagedstr '+'
-zstyle ':vcs_info:*' stagedstr '*'
-zstyle ':vcs_info:*' formats "%b %u%c"
-
 function _prompt_pill_start() {
 	local bg=$1
 	echo -n "%K{$color_bg}%F{$bg}%f%k"

@@ -21,7 +21,7 @@ in
       ${pkgs.blueman}/bin/blueman-applet &
       ${pkgs.pasystray}/bin/pasystray &
       ${pkgs.flameshot}/bin/flameshot &
-      ${pkgs.feh}/bin/feh --no-fehbg --bg-center ~/wallpaper.png
+      ${pkgs.feh}/bin/feh --no-fehbg --bg-scale ~/wallpaper.png
     '';
 
     windowManager.xmonad = {

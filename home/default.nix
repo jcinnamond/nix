@@ -4,12 +4,6 @@ let
   haskellPackages = pkgs.haskell.packages.ghc982;
 in
 {
-  nixpkgs = {
-    config = {
-      allowUnfree = true;
-    };
-  };
-
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "jc";

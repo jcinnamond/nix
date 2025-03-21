@@ -35,7 +35,7 @@
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
     modesetting.enable = true;
-    powerManagement.enable = true; # change this if it breaks sleep/suspend
+    powerManagement.enable = false; # change this if it breaks sleep/suspend
     powerManagement.finegrained = false; # only works on Turing or newer
     open = false;
     nvidiaSettings = true;

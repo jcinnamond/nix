@@ -25,6 +25,7 @@ in
     bat
     bc
     feh
+    ffmpeg
     file
     fzf
     jq

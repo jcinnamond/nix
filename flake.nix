@@ -8,6 +8,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     wired.url = "github:Toqozz/wired-notify";
+    hyprland.url = "github:hyprwm/Hyprland";
 
     monolisa-jc.url = "path:/home/jc/fonts/monolisa-jc";
   };
@@ -19,7 +20,7 @@
       monolisa-jc,
       wired,
       ...
-    }:
+    }@inputs:
     let
       system = "x86_64-linux";
 
@@ -38,6 +39,8 @@
       nixosConfigurations.nixie = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         inherit pkgs;
+
+        specialArgs = { inherit inputs; }; # required by hyprland
         modules = [
           ./configuration.nix
           home-manager.nixosModules.home-manager

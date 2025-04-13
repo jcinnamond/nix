@@ -43,6 +43,8 @@ in
     nixfmt-rfc-style
     nil
 
+    vscode-langservers-extracted
+
     _1password-gui
     kuro
     libreoffice
@@ -74,6 +76,7 @@ in
     ./programs/rofi.nix
     ./programs/sioyek
     ./programs/tmux.nix
+    ./programs/vscode
     ./programs/xmonad/xmonad.nix
     ./programs/zsh
     ./style/default.nix

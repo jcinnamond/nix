@@ -6,7 +6,6 @@ in
 {
   home.packages = with pkgs; [
     feh
-    flameshot
     libnotify
     nautilus
     pasystray
@@ -14,9 +13,13 @@ in
     pulseaudio
   ];
 
-  services.flameshot.settings = {
-    General = {
-      showStartupLaunchMessage = false;
+  services.flameshot = {
+    enable = true;
+
+    settings = {
+      General = {
+        showStartupLaunchMessage = false;
+      };
     };
   };
 
@@ -26,7 +29,6 @@ in
     initExtra = ''
       ${pkgs.blueman}/bin/blueman-applet &
       ${pkgs.pasystray}/bin/pasystray &
-      ${pkgs.flameshot}/bin/flameshot &
       ${pkgs.feh}/bin/feh --no-fehbg --bg-scale ~/wallpaper.png
     '';
 

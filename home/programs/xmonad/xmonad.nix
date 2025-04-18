@@ -14,6 +14,12 @@ in
     pulseaudio
   ];
 
+  services.flameshot.settings = {
+    General = {
+      showStartupLaunchMessage = false;
+    };
+  };
+
   xsession = {
     enable = true;
 

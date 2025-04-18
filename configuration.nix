@@ -22,7 +22,6 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./xmonad.nix
-    ./hyprland.nix
   ];
 
   # Bootloader.

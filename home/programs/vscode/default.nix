@@ -42,6 +42,7 @@ in
             }
         },
 
+        "editor.bracketPairColorization.enabled": false,
         "workbench.colorCustomizations": {
           "sideBar.background": "${bg0}",
           "editor.background": "${bg}",
@@ -82,16 +83,16 @@ in
                       "foreground": "${fg1}"
                   }
               },
-                      {
-              "name": "Operator",
-              "scope": [
-                  "keyword.operator"
-              ],
-              "settings": {
-                  "fontStyle": "bold",
-                  "foreground": "${fg}"
-              }
-            },
+              {
+                "name": "Operator",
+                "scope": [
+                    "keyword.operator"
+                ],
+                "settings": {
+                    "fontStyle": "bold",
+                    "foreground": "${fg}"
+                }
+              },
             {
                 "name": "Punctuation",
                 "scope": [
@@ -107,7 +108,8 @@ in
                     "meta.property-value punctuation.separator.key-value",
                     "punctuation.definition.metadata.md",
                     "string.link.md",
-                    "meta.brace"
+                    "meta.brace",
+                    "punctuation.section.embedded"
                 ],
                 "settings": {
                     "fontStyle": "",
@@ -178,10 +180,22 @@ in
                     "keyword.other.new",
                     "keyword.other.special-method",
                     "keyword.other.unit",
-                    "keyword.other.use-as"
+                    "keyword.other.use-as",
+                    "keyword.control"
                 ],
                 "settings": {
                     "fontStyle": "bold",
+                    "foreground": "${fg}"
+                }
+            },
+            {
+                "name": "Other oddities",
+                "scope": [
+                    "entity.name.namespace",
+                    "storage.type"
+                ],
+                "settings": {
+                    "fontStyle": "",
                     "foreground": "${fg}"
                 }
             },

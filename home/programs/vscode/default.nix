@@ -33,6 +33,8 @@ in
 
         "editor.formatOnSave": true,
 
+        "extensions.autoCheckUpdates": false,
+
         "nix.enableLanguageServer": true,
         "nix.serverSettings": {
             "nil": {

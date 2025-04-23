@@ -11,6 +11,7 @@ in
       haskell.haskell
       kahole.magit
       jnoortheen.nix-ide
+      golang.go
     ];
   };
 

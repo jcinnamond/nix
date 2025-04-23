@@ -34,6 +34,8 @@ in
     ripgrep
     xsel
 
+    go
+
     haskellPackages.ghc
     haskellPackages.haskell-language-server
     haskellPackages.cabal-install

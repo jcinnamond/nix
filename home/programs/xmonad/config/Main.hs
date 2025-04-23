@@ -7,7 +7,7 @@ import Data.Map qualified as M
 import Nix qualified
 import System.Exit (exitSuccess)
 import Volume qualified
-import XMonad (Button, ButtonMask, ChangeLayout (..), IncMasterN (..), KeyMask, KeySym, ManageHook, Query, Window, X, XConfig (..), button1, button3, className, composeAll, doF, doShift, focus, io, kill, mod1Mask, mod4Mask, mouseMoveWindow, mouseResizeWindow, noModMask, runQuery, sendMessage, shiftMask, spawn, stringProperty, stringToKeysym, title, windows, withFocused, xK_Escape, xK_F4, xK_Left, xK_Right, xK_Tab, xK_a, xK_comma, xK_e, xK_equal, xK_i, xK_l, xK_m, xK_n, xK_period, xK_q, xK_r, xK_s, xK_space, xK_t, xK_z, xmonad, (-->), (.|.), (<+>), (=?), (|||))
+import XMonad (Button, ButtonMask, ChangeLayout (..), IncMasterN (..), KeyMask, KeySym, ManageHook, Query, Window, X, XConfig (..), button1, button3, className, composeAll, controlMask, doF, doShift, focus, io, kill, mod1Mask, mod4Mask, mouseMoveWindow, mouseResizeWindow, noModMask, runQuery, sendMessage, shiftMask, spawn, stringProperty, stringToKeysym, title, windows, withFocused, xK_Escape, xK_F4, xK_Left, xK_Right, xK_Tab, xK_a, xK_comma, xK_e, xK_equal, xK_i, xK_l, xK_m, xK_n, xK_period, xK_q, xK_r, xK_s, xK_space, xK_t, xK_z, xmonad, (-->), (.|.), (<+>), (=?), (|||))
 import XMonad.Actions.CopyWindow (copyToAll)
 import XMonad.Actions.PerWorkspaceKeys (bindOn)
 import XMonad.Actions.WindowGo (raiseNext)
@@ -53,30 +53,33 @@ myManageHook =
     ]
 
 myWorkspaces :: [String]
-myWorkspaces = ["dev", "web", "chat", "x", "streaming", "music"]
+myWorkspaces = ["dev", "web", "chat", "x", "y", "streaming", "music"]
 
 myKeys :: XConfig l -> M.Map (KeyMask, KeySym) (X ())
 myKeys _ = M.fromList $ wmKeys <> workspaceKeys myWorkspaces
 
+xmod :: KeyMask
+xmod = mod4Mask .|. mod1Mask .|. controlMask
+
 wmKeys :: [((KeyMask, KeySym), X ())]
 wmKeys =
   [ -- Launchers
-    ((mod4Mask, xK_space), spawn "rofi -show drun -show-icons"),
+    ((xmod, xK_space), spawn "rofi -show drun -show-icons"),
     -- Manage and navigate windows
     ((mod1Mask, xK_Tab), bindOn [("streaming", raiseNext isStreaming), ("", focusUp)]),
-    ((mod4Mask, xK_equal), focusMaster),
-    ((mod4Mask, xK_comma), sendMessage (IncMasterN 1)),
-    ((mod4Mask, xK_period), sendMessage (IncMasterN (-1))),
-    ((mod4Mask, xK_Left), windows W.swapUp),
-    ((mod4Mask, xK_Right), windows W.swapDown),
-    ((mod4Mask, xK_Escape), windows W.swapMaster),
-    ((mod4Mask, xK_m), withFocused (sendMessage . maximizeRestore)),
-    ((mod4Mask, xK_t), withFocused $ windows . W.sink),
+    ((xmod, xK_equal), focusMaster),
+    ((xmod, xK_comma), sendMessage (IncMasterN 1)),
+    ((xmod, xK_period), sendMessage (IncMasterN (-1))),
+    ((xmod, xK_Left), windows W.swapUp),
+    ((xmod, xK_Right), windows W.swapDown),
+    ((xmod, xK_Escape), windows W.swapMaster),
+    ((xmod, xK_m), withFocused (sendMessage . maximizeRestore)),
+    ((xmod, xK_t), withFocused $ windows . W.sink),
     ((mod1Mask, xK_F4), kill),
-    ((mod4Mask, xK_l), sendMessage NextLayout),
+    ((xmod, xK_l), sendMessage NextLayout),
     -- System control
-    ((mod4Mask, xK_z), spawn "systemctl suspend"),
-    ((mod4Mask .|. shiftMask, xK_q), io exitSuccess),
+    ((xmod, xK_z), spawn "systemctl suspend"),
+    ((xmod .|. shiftMask, xK_q), io exitSuccess),
     -- Multimedia keys
     ((noModMask, stringToKeysym "XF86AudioPlay"), spawn "playerctl play-pause"),
     ((noModMask, stringToKeysym "XF86AudioPrev"), spawn "playerctl previous"),
@@ -86,15 +89,15 @@ wmKeys =
     ((noModMask, stringToKeysym "XF86AudioLowerVolume"), spawn $ Volume.decrease 2),
     ((noModMask, stringToKeysym "XF86AudioMute"), spawn "pactl set-sink-mute @DEFAULT_SINK@ toggle"),
     -- Workspaces
-    ((mod4Mask, xK_a), (windows . W.greedyView) "dev"),
-    ((mod4Mask .|. shiftMask, xK_a), (windows . W.shift) "dev")
+    ((xmod, xK_a), (windows . W.greedyView) "dev"),
+    ((xmod .|. shiftMask, xK_a), (windows . W.shift) "dev")
   ]
 
 workspaceKeys :: [String] -> [((KeyMask, KeySym), X ())]
 workspaceKeys ws =
-  let homerow = [xK_a, xK_r, xK_s, xK_n, xK_e, xK_i]
-   in [((mod4Mask, k), (windows . W.greedyView) w) | (k, w) <- zip homerow ws]
-        <> [((mod4Mask .|. shiftMask, k), (windows . W.shift) w) | (k, w) <- zip homerow ws]
+  let homerow = [xK_a, xK_r, xK_s, xK_t, xK_n, xK_e, xK_i]
+   in [((xmod, k), (windows . W.greedyView) w) | (k, w) <- zip homerow ws]
+        <> [((xmod .|. shiftMask, k), (windows . W.shift) w) | (k, w) <- zip homerow ws]
 
 myBindings :: XConfig l -> M.Map (ButtonMask, Button) (Window -> X ())
 myBindings _ =

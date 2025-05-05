@@ -40,7 +40,7 @@ in
         switch = "sudo nixos-rebuild --flake ~/nixos switch";
       };
     };
-    initExtra = ''
+    initContent = ''
       source ${zshConfigDir}/colors.zsh
       if test -d ${zshConfigDir}/conf.d; then
         for file in ${zshConfigDir}/conf.d/*.zsh; do

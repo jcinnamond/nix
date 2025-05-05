@@ -2,13 +2,13 @@
 let
   fonts = config.style.fonts;
   colors = config.style.colors.withHash;
+  translucent = config.style.colors.translucentWithHash;
 in
 {
   config.programs.vscode = {
     enable = true;
     profiles.default = {
       extensions = with pkgs.vscode-extensions; [
-        usernamehw.errorlens
         haskell.haskell
         kahole.magit
         jnoortheen.nix-ide
@@ -20,11 +20,40 @@ in
           command = "editor.action.smartSelect.expand";
           when = "editorTextFocus";
         }
+        {
+          key = "ctrl+shift+t";
+          command = "workbench.action.createTerminalEditorSide";
+        }
+        {
+          key = "ctrl+b";
+          command = "workbench.action.togglePanel";
+        }
+        {
+          key = "ctrl+j";
+          command = "workbench.action.toggleSidebarVisibility";
+        }
+        {
+          key = "ctrl+alt+c";
+          command = "workbench.action.toggleCenteredLayout";
+        }
       ];
       userSettings =
         with fonts;
         with colors;
         {
+          # Privacy settings
+          "telemetry.telemetryLevel" = "off";
+          "telemetry.feedback.enabled" = false;
+          "workbench.enableExperiments" = false;
+          "extensions.autoUpdate" = false;
+          "extensions.autoCheckUpdates" = false;
+          "extensions.ignoreRecommendations" = true;
+
+          # Disable chat assistants
+          "terminal.integrated.initialHint" = false;
+          "chat.agent.enabled" = false;
+          "chat.commandCenter.enabled" = false;
+
           "editor.fontFamily" = "'${nerdfont}'";
           "editor.fontSize" = 15;
           "editor.fontLigatures" = true;
@@ -33,13 +62,30 @@ in
           "editor.minimap.enabled" = false;
           "workbench.activityBar.location" = "hidden";
           "workbench.sideBar.location" = "right";
-          "workbench.panel.defaultLocation" = "left";
           "workbench.layoutControl.enabled" = false;
-          "chat.commandCenter.enabled" = false;
+          "workbench.panel.defaultLocation" = "right";
+          "editor.stickyScroll.enabled" = false;
+          "window.commandCenter" = false;
+          "window.menuBarVisibility" = "hidden";
+          "window.customTitleBarVisibility" = "never";
+          "window.titleBarStyle" = "custom"; # making this "native" seems to force the menu bar to be visible
+
+          "breadcrumbs.icons" = false;
+          "breadcrumbs.symbolPath" = "off";
+          "workbench.editor.showTabs" = "single";
+
+          "editor.suggest.preview" = true;
+          "editor.hover.enabled" = false;
+          "editor.suggestOnTriggerCharacters" = false;
+          "editor.parameterHints.enabled" = false;
+          "editor.quickSuggestions" = {
+            "other" = "off";
+            "comments" = "off";
+            "strings" = "off";
+          };
+          "editor.tabCompletion" = "onlySnippets";
 
           "editor.formatOnSave" = true;
-
-          "extensions.autoCheckUpdates" = false;
 
           "nix.enableLanguageServer" = true;
           "nix.serverSettings" = {
@@ -50,50 +96,120 @@ in
             };
           };
 
+          "go.lintTool" = "golangci-lint";
+          "gopls" = {
+            "ui.semanticTokens" = true;
+          };
+
           "haskell.cabalFormattingProvider" = "cabal-fmt";
           "haskell.formattingProvider" = "fourmolu";
+          "haskell.plugin.semanticTokens.globalOn" = true;
 
           "editor.bracketPairColorization.enabled" = false;
           "workbench.colorCustomizations" = {
-            "sideBar.background" = "${bg0}";
             "editor.background" = "${bg}";
             "editor.foreground" = "${fg}";
+            "editor.selectionForeground" = "${fg}";
             "editor.selectionBackground" = "${selection}";
-            "editorGutter.background" = "${bg0}";
-            "editorLineNumber.foreground" = "${fg1}";
-            "editorLineNumber.activeForeground" = "${fg}";
-            "editorCursor.foreground" = "${fg}";
             "editor.lineHighlightBackground" = "${bg0}";
-            "statusBar.background" = "${bg1}";
-            "statusBar.foreground" = "${fg0}";
+
+            "sidebar.background" = "${bg0}";
+            "sidebar.foreground" = "${fg}";
+
+            "editorLineNumber.foreground" = "${fg1}";
+            "editorLineNumber.background" = "${bg2}";
+            "editorLineNumber.activeForeground" = "${fg}";
+            "editorLineNumber.dimmedForeground" = "${fg2}";
+
+            "editor.wordHighlightBackground" = "${translucent.bg1}";
+            "editor.wordHighlightStrongBackground" = "${translucent.bg1}";
+            "editor.wordHighlightStrongBorder" = "${yellow-dark}";
+            "editor.wordHighlightTextBackground" = "${translucent.bg}";
           };
 
           "editor.tokenColorCustomizations" = {
             "textMateRules" = [
               {
+                "name" = "keywords";
                 "scope" = [
                   "keyword"
-                  "constant"
+                  "keyword.control"
                 ];
                 "settings" = {
-                  "foreground" = "${fg0}";
+                  "fontStyle" = "";
+                  "foreground" = "${keywords}";
                 };
               }
               {
+                "name" = "literals";
                 "scope" = [
                   "string"
-                  "constant"
+                  "string.regexp"
+                  "constant.character.escape"
+                  "constant.numeric"
                   "constant.language"
                 ];
                 "settings" = {
-                  "foreground" = "${fg1}";
+                  "fontStyle" = "";
+                  "foreground" = "${strings}";
                 };
               }
               {
+                "name" = "string placeholders";
+                "scope" = [ "constant.other.placeholder" ];
+                "settings" = {
+                  "foreground" = "${keywords}";
+                };
+              }
+              {
+                "name" = "comment";
+                "scope" = [ "comment" ];
+                "settings" = {
+                  "fontStyle" = "";
+                  "foreground" = "${comments}";
+                };
+              }
+              {
+                "name" = "punctuation";
                 "scope" = [
-                  "support.type.property-name"
+                  "punctuation"
+                  "punctuation.section.embedded"
+                  "keyword.operator"
+                  "delimiter"
+                  "bracket"
+                  "brace"
+                  "paren"
                 ];
                 "settings" = {
+                  "fontStyle" = "";
+                  "foreground" = "${keywords}";
+                };
+              }
+              {
+                "name" = "catchall";
+                "scope" = [
+                  "constant.other.option"
+                  "variable"
+                  "variable.language"
+                  "variable.parameter"
+                  "variable.other.readwrite"
+                  "variable.other.constant"
+                  "entity.name.type"
+                  "entity.name.function"
+                  "entity.name.namespace"
+                  "entity.other.attribute"
+                  "entity.name.import.go"
+                  "support.type"
+                  "support.type.property-name"
+                  "support.class"
+                  "support.function"
+                  "support.variable"
+                  "storage.type.numeric.go"
+                  "storage.type.string.go"
+                  "storage.type.boolean.go"
+                ];
+                "settings" = {
+                  "fontStyle" = "";
                   "foreground" = "${fg}";
                 };
               }

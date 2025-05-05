@@ -29,7 +29,10 @@ rec {
   bg1 = "323531";
   bg2 = "3f403e";
 
-  fg = "e8e8d1";
+  fg = "e8e8e8";
+  strings = "cfcfc1";
+  comments = "81a181";
+  keywords = "b1b1b1";
   fg0 = "b1b198"; # e.g, strings
   fg1 = "818178"; # e.g, comments
   fg2 = "555555"; # e.g, deactivated

@@ -54,12 +54,11 @@ with lib;
       readOnly = true;
       default = builtins.mapAttrs (_: value: "#${value}") config.style.colors.scheme;
     };
-    translucent = (
-      color:
-      let
-        c = (lib.removePrefix "#" color);
-      in
-      "#AA${c}"
-    );
+    translucentWithHash = mkOption {
+      type = types.attrsOf types.str;
+      description = "The color scheme, with transparency added and color values prefixed with '#'";
+      readOnly = true;
+      default = builtins.mapAttrs (_: value: "#AA${value}") config.style.colors.scheme;
+    };
   };
 }

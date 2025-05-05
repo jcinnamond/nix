@@ -1,13 +1,3 @@
-function _prompt_pill_start() {
-	local bg=$1
-	echo -n "%K{$color_bg}%F{$bg}%f%k"
-}
-
-function _prompt_pill_end() {
-	local bg=$1
-	echo -n "%K{$color_bg}%F{$bg}%f%k"
-}
-
 function _prompt_git() {
     local branch=$(git branch --show-current 2>/dev/null)
 	if test -z "$branch"; then
@@ -20,27 +10,23 @@ function _prompt_git() {
 		fg=$color_git_dirty_fg
 	fi
 
-    echo -n "%K{$color_cwd_bg}%F{$bg}%f%k"
-	echo -n "%K{$bg}%F{$fg} $branch %f%k"
-	_prompt_pill_end $bg
+	echo -n "  "
+	echo -n "%K{$bg}%F{$fg}$branch%f%k"
 }
 
 function _prompt_cwd() {
-	_prompt_pill_start $color_cwd_bg
-	echo -n "%K{$color_cwd_bg}%F{$color_cwd_fg} %~ %f%k"
+	echo -n "%K{$color_cwd_bg}%F{$color_cwd_fg}%~%f%k"
 	local git_prompt=$(_prompt_git)
 	if test -n "$git_prompt"; then
 		echo -n "$git_prompt"
 	else
-		_prompt_pill_end $color_cwd_bg
 	fi
 }
 
 function _prompt_nix_shell() {
 	if test -n "$IN_NIX_SHELL"; then
-	  _prompt_pill_start $color_nix_shell_bg
-	  echo -n "%K{$color_nix_shell_bg}%F{$color_nix_shell_fg} nix shell %f%k"
-	  _prompt_pill_end $color_nix_shell_bg
+	  echo -n "  "
+	  echo -n "%K{$color_nix_shell_bg}%F{$color_nix_shell_fg}nix shell%f%k"
 	fi
 }
 
@@ -55,7 +41,7 @@ function _prompt() {
 	  return
 	fi
 
-	echo -n "\n$(_prompt_cwd)  $(_prompt_nix_shell)\n "
+	echo -n "\n$(_prompt_cwd)$(_prompt_nix_shell)\n "
 }
 
 function() _rprompt() {

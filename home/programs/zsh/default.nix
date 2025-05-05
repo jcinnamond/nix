@@ -11,13 +11,13 @@ in
     color_success=${green}
     color_error=${red}
     color_prompt_previous=${fg1}
-    color_cwd_bg=${blue-dark}
-    color_cwd_fg=${fg}
-    color_git_clean_bg=${bg2}
-    color_git_clean_fg=${fg}
-    color_git_dirty_bg=${red-dark}
-    color_git_dirty_fg=${fg}
-    color_nix_shell_bg=${bg1}
+    color_cwd_bg=${bg}
+    color_cwd_fg=${blue}
+    color_git_clean_bg=${bg}
+    color_git_clean_fg=${fg1}
+    color_git_dirty_bg=${bg}
+    color_git_dirty_fg=${red}
+    color_nix_shell_bg=${bg}
     color_nix_shell_fg=${fg1}
   '';
 

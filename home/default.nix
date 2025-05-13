@@ -24,6 +24,7 @@ in
     any-nix-shell
     bat
     bc
+    dysk
     feh
     ffmpeg
     file

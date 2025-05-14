@@ -25,7 +25,6 @@ in
     enable = true;
     enableCompletion = true;
     autosuggestion.enable = true;
-    defaultKeymap = "viins";
     sessionVariables = {
       ABBR_SET_EXPANSION_CURSOR = 1;
     };

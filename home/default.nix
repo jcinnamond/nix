@@ -24,6 +24,7 @@ in
     any-nix-shell
     bat
     bc
+    btop
     dysk
     feh
     ffmpeg
@@ -33,6 +34,7 @@ in
     kitty
     marksman
     ripgrep
+    pastel
     xsel
 
     go

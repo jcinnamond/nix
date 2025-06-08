@@ -57,7 +57,6 @@ in
     playerctl
     signal-desktop
     simple-scan
-    skypeforlinux
     spotify
     streamcontroller
     ytmdesktop

@@ -61,7 +61,6 @@ in
     simple-scan
     spotify
     streamcontroller
-    ytmdesktop
     zathura
     zoom-us
     zotero

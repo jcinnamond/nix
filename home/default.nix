@@ -64,6 +64,7 @@ in
     ytmdesktop
     zathura
     zoom-us
+    zotero
 
     font-awesome
     nerd-font-patcher

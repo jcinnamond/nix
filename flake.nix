@@ -8,7 +8,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     wired.url = "github:Toqozz/wired-notify";
-
+    nur = {
+      url = "github:nix-community/NUR";
+    };
     monolisa-jc.url = "path:/home/jc/fonts/monolisa-jc";
   };
 
@@ -18,6 +20,7 @@
       home-manager,
       monolisa-jc,
       wired,
+      nur,
       ...
     }:
     let
@@ -29,6 +32,7 @@
           (final: prev: {
             monolisa-jc = prev.callPackage "${monolisa-jc}" { };
           })
+          nur.overlays.default
           wired.overlays.default
         ];
         config.allowUnfree = true;

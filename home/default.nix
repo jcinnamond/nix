@@ -73,6 +73,7 @@ in
   imports = [
     ./services/polybar/polybar.nix
     ./services/wired
+    ./programs/firefox
     ./programs/fish.nix
     ./programs/gitu.nix
     ./programs/helix.nix
@@ -87,6 +88,13 @@ in
   ];
 
   style.colors.schemeName = "jc";
+  gtk = {
+    enable = true;
+    theme = {
+      name = "Adwaita-dark";
+      package = pkgs.gnome-themes-extra;
+    };
+  };
 
   systemd.user.startServices = true;
   home.keyboard.layout = "gb";

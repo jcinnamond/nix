@@ -157,5 +157,9 @@ in
     ignores = [
       "dist-newstyle"
     ];
+    aliases = {
+      c = "commit --patch";
+      fixup = "commit --amend --no-edit";
+    };
   };
 }

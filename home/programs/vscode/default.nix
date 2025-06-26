@@ -104,6 +104,9 @@ in
           "haskell.cabalFormattingProvider" = "cabal-fmt";
           "haskell.formattingProvider" = "fourmolu";
           "haskell.plugin.semanticTokens.globalOn" = true;
+          "[cabal]" = {
+            "editor.defaultFormatter" = "haskell.haskell";
+          };
 
           "editor.bracketPairColorization.enabled" = false;
           "workbench.colorCustomizations" = {

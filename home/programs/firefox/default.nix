@@ -152,7 +152,6 @@
         "privacy.globalprivacycontrol.enabled" = true;
         "privacy.fingerprintingProtection" = true;
         "dom.security.https_only_mode" = true;
-        "browser.contentblocking.category" = "strict";
         "network.http.sendRefererHeader" = 0;
         "network.cookie.cookieBehavior" = 1;
 

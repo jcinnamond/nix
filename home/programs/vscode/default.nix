@@ -101,12 +101,10 @@ in
             "ui.semanticTokens" = true;
           };
 
-          "haskell.cabalFormattingProvider" = "cabal-fmt";
+          "haskell.manageHLS" = "PATH";
+          "haskell.cabalFormattingProvider" = "cabal-gild";
           "haskell.formattingProvider" = "fourmolu";
           "haskell.plugin.semanticTokens.globalOn" = true;
-          "[cabal]" = {
-            "editor.defaultFormatter" = "haskell.haskell";
-          };
 
           "editor.bracketPairColorization.enabled" = false;
           "workbench.colorCustomizations" = {

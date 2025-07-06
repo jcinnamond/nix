@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 let
-  haskellPackages = pkgs.haskell.packages.ghc982;
+  haskellPackages = pkgs.haskell.packages.ghc912;
 in
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -42,7 +42,7 @@ in
     haskellPackages.ghc
     haskellPackages.haskell-language-server
     haskellPackages.cabal-install
-    haskellPackages.cabal-fmt
+    haskellPackages.cabal-gild
     haskellPackages.fourmolu
 
     nixfmt-rfc-style

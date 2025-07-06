@@ -75,6 +75,7 @@ in
     ./services/wired
     ./programs/firefox
     ./programs/fish.nix
+    ./programs/ghostty
     ./programs/gitu.nix
     ./programs/helix.nix
     ./programs/kitty.nix

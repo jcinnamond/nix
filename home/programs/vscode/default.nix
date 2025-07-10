@@ -200,6 +200,7 @@ in
                   "variable.parameter"
                   "variable.other.readwrite"
                   "variable.other.constant"
+                  "variable.other.enummember"
                   "entity.name.type"
                   "entity.name.function"
                   "entity.name.namespace"

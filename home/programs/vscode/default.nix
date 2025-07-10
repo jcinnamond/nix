@@ -21,6 +21,11 @@ in
           when = "editorTextFocus";
         }
         {
+          key = "ctrl+alt+meta+'";
+          command = "editor.action.smartSelect.shrink";
+          when = "editorTextFocus";
+        }
+        {
           key = "ctrl+shift+t";
           command = "workbench.action.createTerminalEditorSide";
         }

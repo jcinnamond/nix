@@ -211,6 +211,7 @@ in
                   "support.class"
                   "support.function"
                   "support.variable"
+                  "storage.type"
                   "storage.type.numeric.go"
                   "storage.type.string.go"
                   "storage.type.boolean.go"

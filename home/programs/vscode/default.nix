@@ -41,6 +41,20 @@ in
           key = "ctrl+alt+c";
           command = "workbench.action.toggleCenteredLayout";
         }
+        {
+          key = "ctrl+shift+alt+left";
+          command = "cursorWordLeft";
+          when = "textInputFocus";
+        }
+        {
+          key = "ctrl+shift+alt+right";
+          command = "cursorWordRight";
+          when = "textInputFocus";
+        }
+        {
+          key = "ctrl+alt+w";
+          command = "workbench.action.closeEditorsAndGroup";
+        }
       ];
       userSettings =
         with fonts;

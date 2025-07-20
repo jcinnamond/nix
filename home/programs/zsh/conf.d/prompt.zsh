@@ -3,19 +3,17 @@ function _prompt_git() {
 	if test -z "$branch"; then
 	  return
 	fi
-	local bg=$color_git_clean_bg
 	local fg=$color_git_clean_fg
 	if test -n "$(git status --porcelain)"; then
-		bg=$color_git_dirty_bg
 		fg=$color_git_dirty_fg
 	fi
 
 	echo -n "  "
-	echo -n "%K{$bg}%F{$fg}$branch%f%k"
+	echo -n "%F{$fg}$branch%f"
 }
 
 function _prompt_cwd() {
-	echo -n "%K{$color_cwd_bg}%F{$color_cwd_fg}%~%f%k"
+	echo -n "%F{$color_cwd_fg}%~%f"
 	local git_prompt=$(_prompt_git)
 	if test -n "$git_prompt"; then
 		echo -n "$git_prompt"
@@ -26,7 +24,7 @@ function _prompt_cwd() {
 function _prompt_nix_shell() {
 	if test -n "$IN_NIX_SHELL"; then
 	  echo -n "  "
-	  echo -n "%K{$color_nix_shell_bg}%F{$color_nix_shell_fg}nix shell%f%k"
+	  echo -n "%F{$color_nix_shell_fg}nix shell%f"
 	fi
 }
 

@@ -55,6 +55,11 @@ in
           key = "ctrl+alt+w";
           command = "workbench.action.closeEditorsAndGroup";
         }
+        {
+          key = "ctrl+tab";
+          command = "workbench.action.focusNextGroup";
+          when = "multipleEditorGroups";
+        }
       ];
       userSettings =
         with fonts;

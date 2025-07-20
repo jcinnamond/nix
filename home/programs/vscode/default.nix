@@ -60,6 +60,11 @@ in
           command = "workbench.action.focusNextGroup";
           when = "multipleEditorGroups";
         }
+        {
+          key = "alt+t";
+          command = "workbench.action.tasks.test";
+          when = "taskCommandsRegistered";
+        }
       ];
       userSettings =
         with fonts;

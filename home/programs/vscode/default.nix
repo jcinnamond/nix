@@ -134,6 +134,12 @@ in
           "haskell.cabalFormattingProvider" = "cabal-gild";
           "haskell.formattingProvider" = "fourmolu";
           "haskell.plugin.semanticTokens.globalOn" = true;
+          "[haskell]" = {
+            "editor.defaultFormatter" = "haskell.haskell";
+          };
+          "[cabal]" = {
+            "editor.defaultFormatter" = "haskell.haskell";
+          };
 
           "editor.bracketPairColorization.enabled" = false;
           "workbench.colorCustomizations" = {

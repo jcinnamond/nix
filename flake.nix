@@ -15,7 +15,7 @@
   };
 
   outputs =
-    {
+    inputs@{
       nixpkgs,
       home-manager,
       monolisa-jc,
@@ -24,6 +24,8 @@
       ...
     }:
     let
+      hosts = builtins.attrNames (builtins.readDir ./hosts);
+
       system = "x86_64-linux";
 
       pkgs = import nixpkgs {
@@ -39,28 +41,24 @@
       };
     in
     {
-      nixosConfigurations.nixie = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        inherit pkgs;
+      nixosConfigurations = builtins.listToAttrs (
+        builtins.map (hostname: {
+          name = hostname;
+          value = nixpkgs.lib.nixosSystem {
+            inherit pkgs;
+            modules = [
+              ./hosts/${hostname}
+              home-manager.nixosModules.home-manager
+              {
 
-        modules = [
-          ./hosts/nixie
-          {
-            nix.settings = {
-              experimental-features = [
-                "nix-command"
-                "flakes"
-              ];
-            };
-          }
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.jc = import ./home/default.nix;
-            home-manager.sharedModules = [ wired.homeManagerModules.default ];
-          }
-        ];
-      };
+                home-manager.useGlobalPkgs = true;
+                home-manager.useUserPackages = true;
+                home-manager.sharedModules = [ wired.homeManagerModules.default ];
+              }
+            ];
+            specialArgs = { inherit inputs hostname; };
+          };
+        }) hosts
+      );
     };
 }

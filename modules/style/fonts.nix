@@ -6,11 +6,6 @@
 }:
 with lib;
 {
-  config.home.packages = with pkgs; [
-    inter-nerdfont
-    monolisa-jc
-  ];
-
   options.style.fonts = {
     monospaced = mkOption {
       type = types.nonEmptyStr;

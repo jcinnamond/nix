@@ -1,19 +1,19 @@
-{ pkgs, ... }:
+{ pkgs, hostname, ... }:
 {
   system.stateVersion = "24.05";
 
-  networking.hostName = "nixie";
+  networking.hostName = hostname;
 
   imports = [
     ./hardware-configuration.nix
-    ./nvidia.nix
-    ../../modules/grub
+    ../../modules/systemd-boot
     ../../modules/nix
     ../../modules/locale
-    ../../modules/xmonad
+    ../../modules/gnome
     ../../users
-    ./home-extra.nix
   ];
+
+  hardware.sensor.iio.enable = true;
 
   services.printing.enable = true;
 
@@ -49,12 +49,6 @@
       "noauto"
       "x-systemd.idle-timeout=600"
     ];
-  };
-
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 30d";
   };
 
   environment.systemPackages = with pkgs; [

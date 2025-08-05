@@ -1,9 +1,19 @@
-{ ... }:
+{ pkgs, ... }:
 {
   security.sudo.wheelNeedsPassword = false;
   programs.zsh.enable = true;
 
-  imports = [
-    ./jcinnamond.nix
-  ];
+  users.users.jc = {
+    isNormalUser = true;
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "scanner"
+      "lp"
+      "docker"
+    ];
+    shell = pkgs.zsh;
+  };
+
+  home-manager.users.jc = ./home.nix;
 }

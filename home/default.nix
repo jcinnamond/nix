@@ -71,19 +71,19 @@ in
   ];
 
   imports = [
-    ./services/polybar/polybar.nix
-    ./services/wired
+    # ./services/polybar/polybar.nix
+    # ./services/wired
     ./programs/firefox
     ./programs/fish.nix
-    ./programs/ghostty
-    ./programs/gitu.nix
+    # ./programs/ghostty
+    # ./programs/gitu.nix
     ./programs/helix.nix
     ./programs/kitty.nix
-    ./programs/rofi.nix
+    # ./programs/rofi.nix
     ./programs/sioyek
     ./programs/tmux.nix
     ./programs/vscode
-    ./programs/xmonad/xmonad.nix
+    # ./programs/xmonad/xmonad.nix
     ./programs/zsh
     ./style/default.nix
   ];

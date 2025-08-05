@@ -58,10 +58,12 @@ in
 
   imports = [
     ../programs/firefox
+    ../programs/git
     ../programs/helix
     ../programs/kitty
     ../programs/vscode
     ../programs/zsh
+
     ../modules/style
   ];
 

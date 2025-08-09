@@ -22,8 +22,9 @@ in
     jq
     kitty
     marksman
-    ripgrep
     pastel
+    ripgrep
+    timg
     xsel
 
     go

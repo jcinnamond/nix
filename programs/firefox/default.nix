@@ -172,6 +172,12 @@
         "browser.urlbar.suggest.recentsearches" = false;
         "browser.urlbar.shortcuts.history" = false;
         "browser.urlbar.suggest.topsites" = false;
+        "browser.urlbar.autoFill.adaptiveHistory.enabled" = true;
+        "browser.urlbar.suggest.quicksuggest.sponsored" = false;
+        "browser.urlbar.suggest.quicksuggest.nonsponsored" = false;
+        "browser.urlbar.suggest.engines" = false;
+        "browser.urlbar.showSearchSuggestionsFirst" = false;
+        "browser.urlbar.autoFill" = false;
 
         # Disable auto-fill on forms
         "dom.forms.autocomplete.formautofill" = false;

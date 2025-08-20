@@ -1,9 +1,5 @@
-{ pkgs, ... }:
+{ ... }:
 {
-  system.stateVersion = "24.05";
-
-  networking.hostName = "nixie";
-
   imports = [
     ./hardware-configuration.nix
     ./nvidia.nix
@@ -22,6 +18,13 @@
     ../../modules/xmonad
 
     ../../users
-    ./home-extra.nix
   ];
+
+  home-manager.extraSpecialArgs = {
+    extraImports = [
+      ../../programs/obs
+      ../../programs/streamcontroller
+      ../../programs/xmonad
+    ];
+  };
 }

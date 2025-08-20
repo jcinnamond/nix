@@ -13,13 +13,26 @@ in
     pulseaudio
   ];
 
-  services.flameshot = {
-    enable = true;
+  imports = [
+    ../../programs/rofi
+    ../../services/polybar
+    ../../services/wired
+    ../../services/flameshot
+  ];
 
-    settings = {
-      General = {
-        showStartupLaunchMessage = false;
-      };
+  home.file."wallpaper.png".source = ../../modules/style/wallpapers/milky-way.png;
+
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
+    };
+  };
+
+  gtk = {
+    enable = true;
+    theme = {
+      name = "Adwaita-dark";
+      package = pkgs.gnome-themes-extra;
     };
   };
 

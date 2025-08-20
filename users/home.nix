@@ -1,4 +1,8 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  extraImports ? [ ],
+  ...
+}:
 let
   haskellPackages = pkgs.haskell.packages.ghc912;
 in
@@ -66,10 +70,10 @@ in
     ../programs/zsh
 
     ../modules/style
-  ];
+  ]
+  ++ extraImports;
 
   style.colors.schemeName = "jc";
-  home.file."wallpaper.png".source = ../modules/style/wallpapers/milky-way.png;
 
   systemd.user.startServices = true;
   home.keyboard.layout = "gb";

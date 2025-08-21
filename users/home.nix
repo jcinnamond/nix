@@ -1,6 +1,6 @@
 {
   pkgs,
-  extraImports ? [ ],
+  extraImports,
   ...
 }:
 let

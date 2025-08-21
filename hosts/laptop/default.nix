@@ -19,4 +19,9 @@
   ];
 
   hardware.sensor.iio.enable = true;
+
+  home-manager.extraSpecialArgs = {
+    extraImports = [ ];
+  };
+
 }

@@ -65,6 +65,11 @@ in
           command = "workbench.action.tasks.test";
           when = "taskCommandsRegistered";
         }
+        {
+          key = "alt+f12";
+          command = "workbench.action.navigateBack";
+          when = "canNavigateBack";
+        }
       ];
       userSettings =
         with fonts;

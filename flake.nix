@@ -11,7 +11,7 @@
     nur = {
       url = "github:nix-community/NUR";
     };
-    monolisa-jc.url = "path:/home/jc/fonts/monolisa-jc";
+    monolisa-jc.url = "git+ssh://git@github.com/jcinnamond/monolisa-jc";
   };
 
   outputs =

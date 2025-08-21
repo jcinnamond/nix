@@ -83,14 +83,17 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1754234573,
-        "narHash": "sha256-hXohzpj5g373gZV36qGFVxSIOFX1VTob/PAPkwp3jlU=",
-        "path": "/home/jc/fonts/monolisa-jc",
-        "type": "path"
+        "lastModified": 1734974946,
+        "narHash": "sha256-cvwTx4zEdiQP6R8gJmChdaxsMm7aLNjenlS+MIJNnDg=",
+        "ref": "refs/heads/main",
+        "rev": "0c76156d3008f1bedd8766c8669c9af50af7ee2b",
+        "revCount": 1,
+        "type": "git",
+        "url": "ssh://git@github.com/jcinnamond/monolisa-jc"
       },
       "original": {
-        "path": "/home/jc/fonts/monolisa-jc",
-        "type": "path"
+        "type": "git",
+        "url": "ssh://git@github.com/jcinnamond/monolisa-jc"
       }
     },
     "nixpkgs": {

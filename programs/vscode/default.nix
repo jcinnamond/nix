@@ -8,11 +8,12 @@ in
   config.programs.vscode = {
     enable = true;
     profiles.default = {
-      extensions = with pkgs.vscode-extensions; [
+      extensions = with pkgs.vscode-marketplace; [
         haskell.haskell
         kahole.magit
         jnoortheen.nix-ide
         golang.go
+        cab404.vscode-direnv
       ];
       keybindings = [
         {

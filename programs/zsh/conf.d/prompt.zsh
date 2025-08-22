@@ -28,6 +28,13 @@ function _prompt_nix_shell() {
 	fi
 }
 
+function _prompt_direnv() {
+	if test -n "$DIRENV_DIR"; then
+	  echo -n "  "
+	  echo -n "%F{$color_direnv_fg} direnv%f"
+	fi
+}
+
 function _prompt() {
 	local last_status=$?
 	if (( $_prompt_compact )); then
@@ -39,7 +46,7 @@ function _prompt() {
 	  return
 	fi
 
-	echo -n "\n$(_prompt_cwd)$(_prompt_nix_shell)\n "
+	echo -n "\n$(_prompt_cwd)$(_prompt_nix_shell)$(_prompt_direnv)\n "
 }
 
 function() _rprompt() {

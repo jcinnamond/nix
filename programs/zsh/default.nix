@@ -19,6 +19,7 @@ in
     color_git_dirty_fg=${red}
     color_nix_shell_bg=${bg}
     color_nix_shell_fg=${fg1}
+    color_direnv_fg=${fg1}
   '';
 
   programs.zsh = {
@@ -27,6 +28,7 @@ in
     autosuggestion.enable = true;
     sessionVariables = {
       ABBR_SET_EXPANSION_CURSOR = 1;
+      DIRENV_LOG_FORMAT = "";
     };
     syntaxHighlighting.enable = true;
     zsh-abbr = {

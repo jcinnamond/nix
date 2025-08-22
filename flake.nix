@@ -12,6 +12,10 @@
       url = "github:nix-community/NUR";
     };
     monolisa-jc.url = "git+ssh://git@github.com/jcinnamond/monolisa-jc";
+    nix-vscode-extensions = {
+      url = "github:nix-community/nix-vscode-extensions";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -21,6 +25,7 @@
       monolisa-jc,
       wired,
       nur,
+      nix-vscode-extensions,
       ...
     }:
     let
@@ -36,6 +41,7 @@
           })
           nur.overlays.default
           wired.overlays.default
+          nix-vscode-extensions.overlays.default
         ];
         config.allowUnfree = true;
       };

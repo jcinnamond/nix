@@ -32,6 +32,8 @@ in
     xsel
 
     go
+    gopls
+    golangci-lint
 
     haskellPackages.ghc
     haskellPackages.haskell-language-server

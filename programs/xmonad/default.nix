@@ -8,7 +8,6 @@ in
     feh
     libnotify
     nautilus
-    pasystray
     ponymix
     pulseaudio
   ];

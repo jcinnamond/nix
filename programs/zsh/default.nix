@@ -41,6 +41,9 @@ in
         switch = "sudo nixos-rebuild --flake ~/nixos switch";
       };
     };
+    setOptions = [
+      "CORRECT"
+    ];
     initContent = ''
       source ${zshConfigDir}/colors.zsh
       if test -d ${zshConfigDir}/conf.d; then

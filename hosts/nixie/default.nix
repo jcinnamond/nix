@@ -22,6 +22,7 @@
 
   home-manager.extraSpecialArgs = {
     extraImports = [
+      ../../programs/agda
       ../../programs/obs
       ../../programs/streamcontroller
       ../../programs/xmonad

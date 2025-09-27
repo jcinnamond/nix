@@ -9,11 +9,12 @@ in
     enable = true;
     profiles.default = {
       extensions = with pkgs.vscode-marketplace; [
-        haskell.haskell
-        kahole.magit
-        jnoortheen.nix-ide
-        golang.go
+        banacorn.agda-mode
         cab404.vscode-direnv
+        golang.go
+        haskell.haskell
+        jnoortheen.nix-ide
+        kahole.magit
       ];
       keybindings = [
         {

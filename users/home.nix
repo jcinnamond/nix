@@ -64,6 +64,7 @@ in
   ];
 
   imports = [
+    ../programs/brave
     ../programs/direnv
     ../programs/firefox
     ../programs/git

@@ -16,16 +16,16 @@
           pkgs = import nixpkgs {
             inherit system;
           };
-          haskellPackages = pkgs.haskell.packages.ghc982;
+          haskellPackages = pkgs.haskell.packages.ghc9122;
         in
         pkgs.mkShell {
           packages = with pkgs; [
             haskellPackages.ghc
             haskellPackages.haskell-language-server
             haskellPackages.cabal-install
-            haskellPackages.cabal-fmt
+            haskellPackages.cabal-gild
             haskellPackages.fourmolu
-            fish
+            haskellPackages.hlint
             xorg.libX11.dev
             xorg.libXrandr
             xorg.libXScrnSaver

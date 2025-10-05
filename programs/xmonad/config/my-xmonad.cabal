@@ -1,14 +1,14 @@
-cabal-version:   3.8
-name:            my-xmonad
-version:         0.1.0.0
+cabal-version: 3.8
+name: my-xmonad
+version: 0.1.0.0
 license:
-author:          John Cinnamond
-maintainer:      john@cinnamond.me.uk
-build-type:      Simple
+author: John Cinnamond
+maintainer: john@cinnamond.me.uk
+build-type: Simple
 extra-doc-files: CHANGELOG.md
 
 common warnings
-  ghc-options:        -Wall
+  ghc-options: -Wall
   default-extensions:
     FlexibleContexts
     ImportQualifiedPost
@@ -16,17 +16,17 @@ common warnings
     TypeSynonymInstances
 
 executable my-xmonad
-  import:           warnings
-  main-is:          Main.hs
+  import: warnings
+  main-is: Main.hs
   build-depends:
-    , base            ^>=4.19.0
-    , containers      ^>=0.6.8
-    , xmonad          ^>=0.18.0
-    , xmonad-contrib  ^>=0.18.1
+    base ^>=4.21.0,
+    containers ^>=0.6.8,
+    xmonad ^>=0.18.0,
+    xmonad-contrib ^>=0.18.1,
 
   other-modules:
     Nix
     Volume
 
-  hs-source-dirs:   .
+  hs-source-dirs: .
   default-language: Haskell2010

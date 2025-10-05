@@ -16,7 +16,7 @@ import XMonad.Hooks.ManageDocks (avoidStruts, docks)
 import XMonad.Layout (Tall (..))
 import XMonad.Layout.BoringWindows (boringWindows, focusMaster, focusUp)
 import XMonad.Layout.CenteredIfSingle (centeredIfSingle)
-import XMonad.Layout.ComboP (Property (Role))
+import XMonad.Layout.ComboP (Property (..))
 import XMonad.Layout.Grid (Grid (..))
 import XMonad.Layout.LayoutBuilder (Predicate (..), absBox, layoutAll, layoutN, layoutP, layoutR, relBox)
 import XMonad.Layout.Maximize (maximizeRestore, maximizeWithPadding)
@@ -49,7 +49,9 @@ myManageHook =
     , className =? "YouTube Music Desktop App" --> doShift "music"
     , className =? "Signal" --> doShift "chat"
     , className =? "zoom" --> doShift "chat"
+    , stringProperty "WM_WINDOW_ROLE" =? "browser" --> doShift "web"
     , title =? "Picture-in-Picture" --> doF copyToAll
+    , title =? "Picture-in-picture" --> doF copyToAll
     ]
 
 myWorkspaces :: [String]
@@ -150,7 +152,7 @@ myLayout = windowNavigation $ avoidStruts $ maximizeWithPadding 0 $ spaceWindows
         videoHeight = videoWidth `div` 16 * 9
         videoX = screenWidth - videoWidth
         videoY = (screenHeight - videoHeight) `div` 5
-     in layoutP (Role "PictureInPicture") (absBox videoX videoY videoWidth videoHeight) Nothing Simplest $
+     in layoutP (Title "Picture-in-picture") (absBox videoX videoY videoWidth videoHeight) Nothing Simplest $
           layoutAll (absBox 0 0 (videoX - 5) screenHeight) l
 
   screenWidth = 3440

@@ -52,6 +52,7 @@ in
     playerctl
     signal-desktop
     simple-scan
+    sioyek
     spotify
     zathura
     zoom-us

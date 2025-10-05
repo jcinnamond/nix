@@ -1,29 +1,27 @@
 { pkgs, ... }:
 {
-  programs.brave = {
+  environment.systemPackages = [ pkgs.brave ];
+
+  # configure brave via nixos' chromium settings
+  programs.chromium = {
     enable = true;
-    package = pkgs.brave;
     extensions = [
-      {
-        # 1password
-        id = "aeblfdkhhhdcdjpifhhbdiojplfjncoa";
-      }
-      {
-        # consent-o-matic
-        id = "mdjildafknihdffpkfmmpnpoiajfjnjd";
-      }
-      {
-        # dark reader
-        id = "eimadpbcbfnmbkopoojfekhnkhdbieeh";
-      }
-      {
-        # ublock origin
-        id = "cjpalhdlnbpafiamejdnhcphjbkeiagm";
-      }
-      {
-        # reader view
-        id = "ecabifbgmdmgdllomnfinbmaellmclnh";
-      }
+      "aeblfdkhhhdcdjpifhhbdiojplfjncoa" # 1password
+      "mdjildafknihdffpkfmmpnpoiajfjnjd" # consent-o-matic
+      "eimadpbcbfnmbkopoojfekhnkhdbieeh" # dark reader
+      "cjpalhdlnbpafiamejdnhcphjbkeiagm" # ublock origin
     ];
+    extraOpts = {
+      PasswordManagerEnabled = false;
+      NewTabPageLocation = "about:blank";
+      BraveAIChatEnabled = false;
+      BraveNewsDisabled = true;
+      BravePlaylistEnabled = false;
+      BraveRewardsDisabled = true;
+      BraveStatsPingEnabled = false;
+      BraveTalkDisabled = true;
+      BraveVPNDisabled = true;
+      BraveWalletDisabled = true;
+    };
   };
 }

@@ -9,7 +9,6 @@ in
     enable = true;
     profiles.default = {
       extensions = with pkgs.vscode-marketplace; [
-        banacorn.agda-mode
         cab404.vscode-direnv
         golang.go
         haskell.haskell

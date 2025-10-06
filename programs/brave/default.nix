@@ -13,7 +13,6 @@
     ];
     extraOpts = {
       PasswordManagerEnabled = false;
-      NewTabPageLocation = "about:blank";
       BraveAIChatEnabled = false;
       BraveNewsDisabled = true;
       BravePlaylistEnabled = false;

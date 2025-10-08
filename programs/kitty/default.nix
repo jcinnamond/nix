@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ config, ... }:
 let
   fonts = config.style.fonts;
 in
@@ -9,7 +9,7 @@ in
     font.size = 12;
     shellIntegration.enableFishIntegration = true;
     keybindings = {
-      "ctrl+tab" = "next_window";
+      "ctrl+tab" = "next_tab";
     };
     settings = {
       enabled_layouts = "tall,stack";

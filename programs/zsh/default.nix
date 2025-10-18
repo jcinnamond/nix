@@ -42,7 +42,11 @@ in
       };
     };
     setOptions = [
+      "AUTO_CD"
       "CORRECT"
+      "EXTENDED_HISTORY"
+      "HIST_IGNORE_SPACE"
+      "NO_BEEP"
     ];
     initContent = ''
       source ${zshConfigDir}/colors.zsh

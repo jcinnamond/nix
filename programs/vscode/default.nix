@@ -28,7 +28,7 @@ in
         }
         {
           key = "ctrl+shift+t";
-          command = "workbench.action.createTerminalEditorSide";
+          command = "workbench.action.terminal.toggleTerminal";
         }
         {
           key = "ctrl+b";
@@ -104,6 +104,7 @@ in
           "window.menuBarVisibility" = "hidden";
           "window.customTitleBarVisibility" = "never";
           "window.titleBarStyle" = "custom"; # making this "native" seems to force the menu bar to be visible
+          "workbench.startupEditor" = "none";
 
           "breadcrumbs.icons" = false;
           "breadcrumbs.symbolPath" = "off";

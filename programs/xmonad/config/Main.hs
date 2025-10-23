@@ -120,7 +120,8 @@ myLayout = windowNavigation $ avoidStruts $ maximizeWithPadding 0 $ spaceWindows
  where
   layouts =
     streaming
-      ( centerSingle centerMain
+      ( centerSingle (Tall 1 (1 / 10) (7 / 10))
+          ||| centerSingle centerMain
           ||| centerSingle (Tall 1 (1 / 100) (1 / 2))
           ||| centerSingle (video (Tall 1 (1 / 100) (1 / 2)))
       )

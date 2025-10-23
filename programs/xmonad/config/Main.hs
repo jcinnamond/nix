@@ -55,7 +55,7 @@ myManageHook =
     ]
 
 myWorkspaces :: [String]
-myWorkspaces = ["dev", "web", "chat", "x", "y", "streaming", "music"]
+myWorkspaces = ["dev", "web", "x", "chat", "y", "streaming", "music"]
 
 myKeys :: XConfig l -> M.Map (KeyMask, KeySym) (X ())
 myKeys _ = M.fromList $ wmKeys <> workspaceKeys myWorkspaces

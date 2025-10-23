@@ -39,7 +39,7 @@ rec {
 
   # Special named colors
   selection = blue-dark;
-  activeBorder = fg;
+  activeBorder = magenta-light;
   inactiveBorder = fg2;
   alert = red;
 }

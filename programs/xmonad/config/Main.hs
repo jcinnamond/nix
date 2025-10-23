@@ -7,7 +7,7 @@ import Data.Map qualified as M
 import Nix qualified
 import System.Exit (exitSuccess)
 import Volume qualified
-import XMonad (Button, ButtonMask, ChangeLayout (..), IncMasterN (..), KeyMask, KeySym, ManageHook, Query, Window, X, XConfig (..), button1, button3, className, composeAll, controlMask, doF, doShift, focus, io, kill, mod1Mask, mod4Mask, mouseMoveWindow, mouseResizeWindow, noModMask, runQuery, sendMessage, shiftMask, spawn, stringProperty, stringToKeysym, title, windows, withFocused, xK_Escape, xK_Left, xK_Right, xK_Tab, xK_a, xK_comma, xK_e, xK_equal, xK_i, xK_k, xK_l, xK_m, xK_n, xK_period, xK_q, xK_r, xK_s, xK_space, xK_t, xK_z, xmonad, (-->), (.|.), (<+>), (=?), (|||))
+import XMonad (Button, ButtonMask, ChangeLayout (..), IncMasterN (..), KeyMask, KeySym, ManageHook, Query, Window, X, XConfig (..), button1, button3, className, composeAll, controlMask, doF, doShift, focus, io, kill, mod1Mask, mod4Mask, mouseMoveWindow, mouseResizeWindow, noModMask, runQuery, sendMessage, shiftMask, spawn, stringProperty, stringToKeysym, title, windows, withFocused, xK_Escape, xK_Left, xK_Right, xK_Tab, xK_a, xK_comma, xK_e, xK_equal, xK_i, xK_k, xK_l, xK_m, xK_n, xK_period, xK_q, xK_r, xK_s, xK_semicolon, xK_space, xK_t, xK_z, xmonad, (-->), (.|.), (<+>), (=?), (|||))
 import XMonad.Actions.CopyWindow (copyToAll)
 import XMonad.Actions.PerWorkspaceKeys (bindOn)
 import XMonad.Actions.WindowGo (raiseNext)
@@ -70,8 +70,6 @@ wmKeys =
   , -- Manage and navigate windows
     ((mod1Mask, xK_Tab), bindOn [("streaming", raiseNext isStreaming), ("", focusUp)])
   , ((xmod, xK_equal), focusMaster)
-  , ((xmod, xK_comma), sendMessage (IncMasterN 1))
-  , ((xmod, xK_period), sendMessage (IncMasterN (-1)))
   , ((xmod, xK_Left), windows W.swapUp)
   , ((xmod, xK_Right), windows W.swapDown)
   , ((xmod, xK_Escape), windows W.swapMaster)
@@ -79,6 +77,9 @@ wmKeys =
   , ((xmod, xK_t), withFocused $ windows . W.sink)
   , ((xmod, xK_k), kill)
   , ((xmod, xK_l), sendMessage NextLayout)
+  , ((xmod, xK_period), windows W.swapMaster)
+  , ((xmod, xK_comma), sendMessage (IncMasterN 1))
+  , ((xmod, xK_semicolon), sendMessage (IncMasterN (-1)))
   , -- System control
     ((xmod, xK_z), spawn "systemctl suspend")
   , ((xmod .|. shiftMask, xK_q), io exitSuccess)

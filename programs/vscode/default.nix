@@ -59,7 +59,12 @@ in
         {
           key = "ctrl+tab";
           command = "workbench.action.focusNextGroup";
-          when = "multipleEditorGroups";
+          when = "multipleEditorGroups && editorFocus";
+        }
+        {
+          key = "ctrl+tab";
+          command = "workbench.action.focusLastEditorGroup";
+          when = "!editorFocus";
         }
         {
           key = "alt+t";

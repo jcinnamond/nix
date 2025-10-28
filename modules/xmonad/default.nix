@@ -6,7 +6,7 @@
   services = {
     gnome.gnome-keyring.enable = true;
     upower.enable = true;
-    
+
     dbus = {
       enable = true;
       packages = [ pkgs.dconf ];
@@ -17,10 +17,11 @@
     };
 
     xserver = {
-    	enable = true;
+      enable = true;
       windowManager.xmonad = {
         enable = true;
       };
+      xkbOptions = "compose:ralt";
     };
 
     displayManager.defaultSession = "none+xmonad";

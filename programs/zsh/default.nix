@@ -38,7 +38,7 @@ in
         flake = "nix flake";
         ns = "nix search nixpkgs";
         nsh = "nix shell nixpkgs#%";
-        switch = "sudo nixos-rebuild --flake ~/nixos switch";
+        switch = "nixos-rebuild --sudo --flake ~/nixos switch";
       };
     };
     setOptions = [

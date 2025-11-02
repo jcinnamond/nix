@@ -21,7 +21,7 @@
       windowManager.xmonad = {
         enable = true;
       };
-      xkbOptions = "compose:ralt";
+      xkb.options = "compose:ralt";
     };
 
     displayManager.defaultSession = "none+xmonad";

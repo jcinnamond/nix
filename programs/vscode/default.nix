@@ -105,6 +105,7 @@ in
           "workbench.layoutControl.enabled" = false;
           "workbench.panel.defaultLocation" = "right";
           "editor.stickyScroll.enabled" = false;
+          "terminal.integrated.stickyScroll.enabled" = false;
           "window.commandCenter" = false;
           "window.menuBarVisibility" = "hidden";
           "window.customTitleBarVisibility" = "never";

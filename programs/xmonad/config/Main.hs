@@ -154,7 +154,7 @@ myLayout = windowNavigation $ avoidStruts $ maximizeWithPadding 0 $ spaceWindows
         videoHeight = videoWidth `div` 16 * 9
         videoX = screenWidth - videoWidth
         videoY = (screenHeight - videoHeight) `div` 5
-     in layoutP (Title "Picture-in-picture") (absBox videoX videoY videoWidth videoHeight) Nothing Simplest $
+     in layoutP (Title "Picture-in-picture" `Or` Role "pop-up") (absBox videoX videoY videoWidth videoHeight) Nothing Simplest $
           layoutAll (absBox 0 0 (videoX - 5) screenHeight) l
 
   screenWidth = 3440

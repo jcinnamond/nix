@@ -16,6 +16,7 @@
       url = "github:nix-community/nix-vscode-extensions";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    xmonad-jc-extra.url = "github:jcinnamond/xmonad-jc-extra";
   };
 
   outputs =
@@ -26,6 +27,7 @@
       wired,
       nur,
       nix-vscode-extensions,
+      xmonad-jc-extra,
       ...
     }:
     let
@@ -42,7 +44,15 @@
           nur.overlays.default
           wired.overlays.default
           nix-vscode-extensions.overlays.default
+          (final: prev: {
+            haskellPackages = prev.haskellPackages.override {
+              overrides = hfinal: hprev: {
+                xmonad-jc-extra = hfinal.callCabal2nix "xmonad-jc-extra" xmonad-jc-extra { };
+              };
+            };
+          })
         ];
+
         config.allowUnfree = true;
       };
     in
@@ -56,7 +66,6 @@
               ./hosts/${hostname}
               home-manager.nixosModules.home-manager
               {
-
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
                 home-manager.sharedModules = [ wired.homeManagerModules.default ];

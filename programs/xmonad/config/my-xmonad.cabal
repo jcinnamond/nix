@@ -7,26 +7,28 @@ maintainer: john@cinnamond.me.uk
 build-type: Simple
 extra-doc-files: CHANGELOG.md
 
-common warnings
+common common
   ghc-options: -Wall
   default-extensions:
     FlexibleContexts
     ImportQualifiedPost
     MultiParamTypeClasses
+    OverloadedRecordDot
     TypeSynonymInstances
 
-executable my-xmonad
-  import: warnings
-  main-is: Main.hs
+  default-language: GHC2024
   build-depends:
-    base ^>=4.21.0,
-    containers ^>=0.6.8,
+    base,
+    containers,
     xmonad ^>=0.18.0,
     xmonad-contrib ^>=0.18.1,
+    xmonad-jc-extra,
 
+executable my-xmonad
+  import: common
+  hs-source-dirs: .
+  main-is: Main.hs
+  build-depends:
   other-modules:
     Nix
     Volume
-
-  hs-source-dirs: .
-  default-language: Haskell2010

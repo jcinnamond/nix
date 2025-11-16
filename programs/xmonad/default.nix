@@ -50,6 +50,7 @@ in
       extraPackages = hp: [
         hp.dbus
         hp.monad-logger
+        hp.xmonad-jc-extra
       ];
       config = ./config/Main.hs;
       libFiles = {

@@ -4,11 +4,10 @@ module Main where
 
 import Data.List (isPrefixOf)
 import Data.Map qualified as M
-import Data.Maybe (fromMaybe)
 import Nix qualified
 import System.Exit (exitSuccess)
 import Volume qualified
-import XMonad (Button, ButtonMask, ChangeLayout (..), IncMasterN (..), KeyMask, KeySym, LayoutClass (..), ManageHook, Query, Rectangle (..), Window, X, XConfig (..), button1, button3, className, composeAll, controlMask, doF, doShift, focus, io, kill, mod1Mask, mod4Mask, mouseMoveWindow, mouseResizeWindow, noModMask, runQuery, sendMessage, shiftMask, spawn, stringProperty, stringToKeysym, title, windows, withFocused, xK_Escape, xK_Left, xK_Right, xK_Tab, xK_a, xK_comma, xK_e, xK_equal, xK_i, xK_k, xK_l, xK_m, xK_n, xK_period, xK_q, xK_r, xK_s, xK_semicolon, xK_space, xK_t, xK_z, xmonad, (-->), (.|.), (<+>), (=?), (|||))
+import XMonad (Button, ButtonMask, ChangeLayout (..), IncMasterN (..), KeyMask, KeySym, LayoutClass (..), ManageHook, Query, Window, X, XConfig (..), button1, button3, className, composeAll, controlMask, doF, doShift, focus, io, kill, mod1Mask, mod4Mask, mouseMoveWindow, mouseResizeWindow, noModMask, runQuery, sendMessage, shiftMask, spawn, stringProperty, stringToKeysym, title, windows, withFocused, xK_Escape, xK_Left, xK_Right, xK_Tab, xK_a, xK_comma, xK_e, xK_equal, xK_i, xK_k, xK_l, xK_m, xK_n, xK_period, xK_q, xK_r, xK_s, xK_semicolon, xK_space, xK_t, xK_z, xmonad, (-->), (.|.), (<+>), (=?), (|||))
 import XMonad.Actions.CopyWindow (copyToAll)
 import XMonad.Actions.PerWorkspaceKeys (bindOn)
 import XMonad.Actions.WindowGo (raiseNext)
@@ -19,17 +18,18 @@ import XMonad.Layout.BoringWindows (boringWindows, focusMaster, focusUp)
 import XMonad.Layout.CenterMainFluid (CenterMainFluid (..))
 import XMonad.Layout.CenteredIfSingle (centeredIfSingle)
 import XMonad.Layout.ComboP (Property (..))
+import XMonad.Layout.Conditional (ConditionalLayout, conditionalLayout)
 import XMonad.Layout.Grid (Grid (..))
 import XMonad.Layout.LayoutBuilder (Predicate (..), absBox, layoutAll, layoutP, layoutR)
 import XMonad.Layout.Maximize (maximizeRestore, maximizeWithPadding)
 import XMonad.Layout.PerWorkspace (onWorkspace)
+import XMonad.Layout.PiP (PiP (..))
 import XMonad.Layout.ShowWName
 import XMonad.Layout.Simplest (Simplest (..))
 import XMonad.Layout.Spacing (Border (..), spacingRaw)
 import XMonad.Layout.Tabbed (simpleTabbed)
 import XMonad.Layout.WindowNavigation (windowNavigation)
 import XMonad.StackSet qualified as W
-import XMonad.Util.WindowProperties (hasProperty)
 
 main :: IO ()
 main = xmonad $ docks $ ewmh $ myConfig def
@@ -158,30 +158,8 @@ instance Predicate Streaming Window where
   alwaysTrue _ = Streaming
   checkPredicate _ = runQuery isStreaming
 
-data HandlePopout l w = HandlePopout Property (l w)
-  deriving (Read, Show)
+handlePopout :: (LayoutClass l Window) => l Window -> ConditionalLayout (PiP l) l Window
+handlePopout l = conditionalLayout popoutProp (PiP popoutProp 1200 l) l
 
-instance (LayoutClass l Window) => LayoutClass (HandlePopout l) Window where
-  runLayout (W.Workspace wname (HandlePopout prop l) s) rect = do
-    hasPopout <- or <$> mapM (hasProperty prop) (W.integrate' s)
-    if hasPopout
-      then do
-        let videoWidth = 1200
-            videoHeight = videoWidth `div` 16 * 9
-            screenWidth = fromIntegral $ rect_width rect
-            screenHeight = fromIntegral $ rect_height rect
-            videoX = screenWidth - videoWidth
-            videoY = (screenHeight - videoHeight) `div` 5
-            popoutL =
-              layoutP prop (absBox videoX videoY videoWidth videoHeight) Nothing Simplest $
-                layoutAll (absBox 0 0 (videoX - 5) screenHeight) l
-
-        (ws', _) <- runLayout (W.Workspace wname popoutL s) rect
-        pure (ws', Nothing)
-      else do
-        (ws', ml') <- runLayout (W.Workspace wname l s) rect
-        let l' = fromMaybe l ml'
-
-        pure (ws', Just $ HandlePopout prop l')
-
-handlePopout = HandlePopout (Title "Picture-in-picture" `Or` Role "pop-up")
+popoutProp :: Property
+popoutProp = Title "Picture-in-picture" `Or` Role "pop-up"

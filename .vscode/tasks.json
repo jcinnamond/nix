@@ -6,7 +6,7 @@
         {
             "label": "switch",
             "type": "shell",
-            "command": "sudo nixos-rebuild --flake ${workspaceFolder} switch",
+            "command": "nixos-rebuild --sudo --flake ${workspaceFolder} switch",
             "group": {
                 "kind": "build",
                 "isDefault": true

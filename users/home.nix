@@ -71,6 +71,7 @@ in
     ../programs/helix
     ../programs/kitty
     ../programs/vscode
+    ../programs/zed-editor
     ../programs/zsh
 
     ../modules/style

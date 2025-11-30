@@ -28,6 +28,7 @@ rec {
   bg0 = "282a27";
   bg1 = "323531";
   bg2 = "3f403e";
+  bg-darker = "070707";
 
   fg = "e8e8e8";
   strings = "cfcfc1";

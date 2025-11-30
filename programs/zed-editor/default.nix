@@ -14,9 +14,6 @@ in
       "haskell"
     ];
     mutableUserSettings = true; # for now -- I'll want to make this false later
-    themes = {
-      jc = ./theme.json;
-    };
     userSettings = with fonts; {
       base_keymap = "VSCode";
       helix_mode = true;
@@ -39,7 +36,10 @@ in
 
       languages = {
         "Nix" = {
-          language_servers = [ "nil" "!nixd" ];
+          language_servers = [
+            "nil"
+            "!nixd"
+          ];
         };
       };
 
@@ -80,6 +80,14 @@ in
         enabled = false; # for now -- I'll want to enable this later
         button = false;
       };
+
+      theme = {
+        mode = "system";
+        light = "One Light";
+        dark = "jc dark";
+      };
     };
   };
+
+  imports = [ ./theme.nix ];
 }

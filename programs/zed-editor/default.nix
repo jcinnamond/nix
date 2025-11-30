@@ -42,6 +42,13 @@ in
           ];
         };
       };
+      lsp = {
+        hls = {
+          initialization_options = {
+            formattingProvider = "fourmolu";
+          };
+        };
+      };
 
       active_pane_modifiers.inactive_opacity = 0.7;
       collaboration_panel.button = false;

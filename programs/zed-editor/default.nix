@@ -84,8 +84,14 @@ in
       };
 
       agent = {
-        enabled = false; # for now -- I'll want to enable this later
-        button = false;
+        enabled = true;
+        button = true;
+      };
+
+      agent_servers = {
+        gemini = {
+          ignore_system_version = false;
+        };
       };
 
       theme = {

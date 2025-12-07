@@ -62,6 +62,8 @@ in
 
     inter-nerdfont
     monolisa-jc
+
+    gemini-cli
   ];
 
   imports = [

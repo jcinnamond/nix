@@ -76,6 +76,9 @@ in
         quick_actions = false;
         selections_menu = true;
       };
+      tab_bar = {
+        show = false;
+      };
 
       auto_update = false;
       telemetry = {

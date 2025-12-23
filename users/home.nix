@@ -72,7 +72,6 @@ in
     ../programs/git
     ../programs/helix
     ../programs/kitty
-    ../programs/ollama
     ../programs/vscode
     ../programs/zed-editor
     ../programs/zsh

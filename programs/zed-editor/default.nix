@@ -53,7 +53,7 @@ in
       active_pane_modifiers.inactive_opacity = 0.7;
       collaboration_panel.button = false;
       debugger.button = false;
-      diagnostics.button = false;
+      diagnostics.button = true;
       git.inline_blame.enabled = false;
       git_panel.button = false;
       gutter.breakpoints = false;
@@ -78,6 +78,12 @@ in
       };
       tab_bar = {
         show = false;
+      };
+      diagnostics = {
+        inline = {
+          enabled = true;
+          max_severity = "warning";
+        };
       };
 
       auto_update = false;

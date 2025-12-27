@@ -26,7 +26,9 @@ in
             "editor.active_line_number" = "${fg}";
             "editor.wrap_guide" = "${bg1}";
 
-            error = "${alert}"; # a comment
+            error = "${red-light}";
+            warning = "${yellow}";
+            "warning.background" = "${bg1}";
 
             players = [
               {

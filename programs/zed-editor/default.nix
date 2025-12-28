@@ -48,6 +48,11 @@ in
             formattingProvider = "fourmolu";
           };
         };
+        nil = {
+          settings = {
+            autoArchive = true;
+          };
+        };
       };
 
       active_pane_modifiers.inactive_opacity = 0.7;
@@ -109,6 +114,19 @@ in
         dark = "jc dark";
       };
     };
+    userKeymaps = [
+      {
+        bindings = {
+          ctrl-' = "editor::SelectLargerSyntaxNode";
+          ctrl-alt-super-' = "editor::SelectSmallerSyntaxNode";
+          ctrl-d = "editor::SelectNext";
+          alt-b = "workspace::ToggleLeftDock";
+          "space w m" = "pane::JoinAll";
+          "space w w" = "workspace::ActivateNextPane";
+          "space w a" = "editor::ToggleFocus";
+        };
+      }
+    ];
   };
 
   imports = [ ./theme.nix ];

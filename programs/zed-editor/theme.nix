@@ -29,6 +29,7 @@ in
             error = "${red-light}";
             warning = "${yellow}";
             "warning.background" = "${bg1}";
+            hint = "${fg1}";
 
             players = [
               {

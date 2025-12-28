@@ -114,6 +114,7 @@ in
         dark = "jc dark";
       };
     };
+    mutableUserKeymaps = false;
     userKeymaps = [
       {
         bindings = {
@@ -121,6 +122,11 @@ in
           ctrl-alt-super-' = "editor::SelectSmallerSyntaxNode";
           ctrl-d = "editor::SelectNext";
           alt-b = "workspace::ToggleLeftDock";
+        };
+      }
+      {
+        context = "((vim_mode == helix_normal || vim_mode == helix_select) && !menu)";
+        bindings = {
           "space w m" = "pane::JoinAll";
           "space w w" = "workspace::ActivateNextPane";
           "space w a" = "editor::ToggleFocus";

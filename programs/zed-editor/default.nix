@@ -9,6 +9,7 @@ in
 
   programs.zed-editor = {
     enable = true;
+    package = pkgs.zed-latest;
     extensions = [
       "nix"
       "haskell"
@@ -27,6 +28,11 @@ in
         80
         120
       ];
+
+      scrollbar = {
+        selected_text = false;
+        git_diff = false;
+      };
 
       terminal = {
         dock = "right";

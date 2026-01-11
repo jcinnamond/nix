@@ -131,11 +131,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1734974946,
-        "narHash": "sha256-cvwTx4zEdiQP6R8gJmChdaxsMm7aLNjenlS+MIJNnDg=",
+        "lastModified": 1768145838,
+        "narHash": "sha256-oVGxd6YaX+Sb0u5EBSG3M+3itvm3j4/j1EF0AyBEX3U=",
         "ref": "refs/heads/main",
-        "rev": "0c76156d3008f1bedd8766c8669c9af50af7ee2b",
-        "revCount": 1,
+        "rev": "17a72431556470566fb96500f8fb5961c1d6de3b",
+        "revCount": 2,
         "type": "git",
         "url": "ssh://git@github.com/jcinnamond/monolisa-jc"
       },

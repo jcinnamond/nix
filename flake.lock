@@ -325,8 +325,7 @@
         "nixpkgs": "nixpkgs_2",
         "nur": "nur",
         "wired": "wired",
-        "xmonad-jc-extra": "xmonad-jc-extra",
-        "zed": "zed"
+        "xmonad-jc-extra": "xmonad-jc-extra"
       }
     },
     "rust-overlay": {
@@ -339,27 +338,6 @@
         "owner": "oxalica",
         "repo": "rust-overlay",
         "rev": "381776b12d0d125edd7c1930c2041a1471e586c0",
-        "type": "github"
-      },
-      "original": {
-        "owner": "oxalica",
-        "repo": "rust-overlay",
-        "type": "github"
-      }
-    },
-    "rust-overlay_2": {
-      "inputs": {
-        "nixpkgs": [
-          "zed",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1765465581,
-        "narHash": "sha256-fCXT0aZXmTalM3NPCTedVs9xb0egBG5BOZkcrYo5PGE=",
-        "owner": "oxalica",
-        "repo": "rust-overlay",
-        "rev": "99cc5667eece98bb35dcf35f7e511031a8b7a125",
         "type": "github"
       },
       "original": {
@@ -419,27 +397,6 @@
       "original": {
         "owner": "jcinnamond",
         "repo": "xmonad-jc-extra",
-        "type": "github"
-      }
-    },
-    "zed": {
-      "inputs": {
-        "crane": "crane",
-        "flake-compat": "flake-compat",
-        "nixpkgs": "nixpkgs_7",
-        "rust-overlay": "rust-overlay_2"
-      },
-      "locked": {
-        "lastModified": 1768048695,
-        "narHash": "sha256-eAMO6xjIH1HJBklRZjUO4tVK2dNxtWU2nN3J1Mi8PLU=",
-        "owner": "zed-industries",
-        "repo": "zed",
-        "rev": "17dbe8d6d48345325ea2ce713b393acbe5b78650",
-        "type": "github"
-      },
-      "original": {
-        "owner": "zed-industries",
-        "repo": "zed",
         "type": "github"
       }
     }

@@ -9,7 +9,6 @@ in
 
   programs.zed-editor = {
     enable = true;
-    package = pkgs.zed-latest;
     extensions = [
       "nix"
       "haskell"

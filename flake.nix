@@ -17,7 +17,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     xmonad-jc-extra.url = "github:jcinnamond/xmonad-jc-extra";
-    zed.url = "github:zed-industries/zed";
   };
 
   outputs =
@@ -29,7 +28,6 @@
       nur,
       nix-vscode-extensions,
       xmonad-jc-extra,
-      zed,
       ...
     }:
     let
@@ -42,9 +40,6 @@
         overlays = [
           (final: prev: {
             monolisa-jc = prev.callPackage "${monolisa-jc}" { };
-          })
-          (final: prev: {
-            zed-latest = zed.packages.${system}.default;
           })
           nur.overlays.default
           wired.overlays.default

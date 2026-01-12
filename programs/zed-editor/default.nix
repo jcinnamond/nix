@@ -19,8 +19,14 @@ in
       helix_mode = true;
       vim_mode = true;
 
+      ui_font_family = "${nerdfont}";
+      ui_font_size = 14;
+
       buffer_font_family = "${nerdfont}";
       buffer_font_size = 14;
+      butter_line_height = {
+        custom = 1.3;
+      };
 
       soft_wrap = "editor_width";
       wrap_guides = [

@@ -13,8 +13,8 @@ in
           name = "jc dark";
           appearance = "dark";
           style = {
-            background = "${bg}";
-            "editor.background" = "${bg}";
+            background = "${bg-darker}";
+            "editor.background" = "${bg-darker}";
             "editor.gutter.background" = "${bg}";
             "editor.active_line.background" = "${bg0}";
             "status_bar.background" = "${bg-darker}";
@@ -25,6 +25,9 @@ in
             "editor.line_number" = "${fg1}";
             "editor.active_line_number" = "${fg}";
             "editor.wrap_guide" = "${bg1}";
+
+            "editor.document_highlight.read_background" = "${bg1}";
+            "editor.document_highlight.write_background" = "${selection}";
 
             error = "${red-light}";
             warning = "${yellow}";
@@ -48,6 +51,9 @@ in
                 color = "${strings}";
                 font_style = null;
                 font_weight = null;
+              };
+              keyword = {
+                color = "${keywords}";
               };
             };
           };

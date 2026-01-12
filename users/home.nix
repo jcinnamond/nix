@@ -41,7 +41,7 @@ in
     haskellPackages.cabal-gild
     haskellPackages.fourmolu
 
-    nixfmt-rfc-style
+    nixfmt
     nil
 
     _1password-gui

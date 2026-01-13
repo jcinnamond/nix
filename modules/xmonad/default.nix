@@ -21,6 +21,7 @@
       windowManager.xmonad = {
         enable = true;
       };
+      xkbOptions = "compost:ralt";
       xkb.options = "compose:ralt";
     };
 

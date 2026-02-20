@@ -12,10 +12,6 @@
       url = "github:nix-community/NUR";
     };
     monolisa-jc.url = "git+ssh://git@github.com/jcinnamond/monolisa-jc";
-    nix-vscode-extensions = {
-      url = "github:nix-community/nix-vscode-extensions";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     xmonad-jc-extra.url = "github:jcinnamond/xmonad-jc-extra";
   };
 
@@ -26,7 +22,6 @@
       monolisa-jc,
       wired,
       nur,
-      nix-vscode-extensions,
       xmonad-jc-extra,
       ...
     }:
@@ -43,7 +38,6 @@
           })
           nur.overlays.default
           wired.overlays.default
-          nix-vscode-extensions.overlays.default
           (final: prev: {
             haskellPackages = prev.haskellPackages.override {
               overrides = hfinal: hprev: {

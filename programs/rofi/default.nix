@@ -21,7 +21,7 @@ in
     ];
     font = fonts.withSize fonts.nerdfont;
     extraConfig = {
-      modi = "drun,run,window,calc";
+      modi = "drun,calc,run,window";
       display-drun = " Apps";
       display-run = " Run";
       display-window = " Windows";

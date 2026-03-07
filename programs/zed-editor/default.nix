@@ -9,9 +9,10 @@ in
 
   programs.zed-editor = {
     enable = true;
-    extensions = [
-      "nix"
+    extensioss = [
       "haskell"
+      "make"
+      "nix"
     ];
     mutableUserSettings = true; # for now -- I'll want to make this false later
     userSettings = with fonts; {

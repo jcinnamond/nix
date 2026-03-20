@@ -9,7 +9,7 @@ in
 
   programs.zed-editor = {
     enable = true;
-    extensioss = [
+    extensions = [
       "haskell"
       "make"
       "nix"

@@ -72,6 +72,7 @@ in
     ../programs/git
     ../programs/helix
     ../programs/kitty
+    ../programs/tmux
     ../programs/zed-editor
     ../programs/zsh
 

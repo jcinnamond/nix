@@ -12,10 +12,6 @@ in
       unbind-key C-o
       bind-key C-o select-pane -t :.+
       bind-key r source-file ~/.config/tmux/tmux.conf
-      bind-key \{ copy-mode
-      bind-key \} paste-buffer -p
-      bind-key [ swap-pane -U
-      bind-key ] swap-pane -D
 
       set -g bell-action none
 

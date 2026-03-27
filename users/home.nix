@@ -52,7 +52,6 @@ in
     playerctl
     signal-desktop
     simple-scan
-    sioyek
     spotify
     zathura
     zoom-us
@@ -72,6 +71,7 @@ in
     ../programs/git
     ../programs/helix
     ../programs/kitty
+    ../programs/sioyek
     ../programs/tmux
     ../programs/zed-editor
     ../programs/zsh

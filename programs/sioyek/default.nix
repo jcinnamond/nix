@@ -7,7 +7,11 @@ in
     enable = true;
     config = {
       ui_font = fonts.variableWidth;
-      font_size = "20";
+      font_size = "16";
+      ruler_mode = "1";
+      startup_commands = [
+        "toggle_dark_mode"
+      ];
     };
   };
 }

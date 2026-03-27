@@ -134,6 +134,8 @@ in
           ctrl-alt-super-' = "editor::SelectSmallerSyntaxNode";
           ctrl-d = "editor::SelectNext";
           alt-b = "workspace::ToggleLeftDock";
+          alt-t = "task::Spawn";
+          alt-shift-t = "task::Rerun";
         };
       }
       {

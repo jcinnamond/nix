@@ -6,9 +6,9 @@
     "allow_concurrent_runs": false,
     "reveal": "no_focus",
     "reveal_target": "dock",
-    "hide": "on_success",
+    "hide": "never",
     "shell": "system",
     "show_summary": false,
-    "show_command": false
-  }
+    "show_command": false,
+  },
 ]

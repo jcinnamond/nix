@@ -39,9 +39,9 @@
             haskell-language-server
           ];
           nativeBuildInputs = with pkgs; [
-            xorg.libX11.dev
-            xorg.libXrandr
-            xorg.libXScrnSaver
+            xorg.libx11.dev
+            xorg.libxrandr
+            xorg.libxscrnsaver
             xorg.libXext
           ];
           withHoogle = false;

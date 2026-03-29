@@ -25,7 +25,7 @@ in
 
       buffer_font_family = "${nerdfont}";
       buffer_font_size = 14;
-      butter_line_height = {
+      buffer_line_height = {
         custom = 1.3;
       };
 
@@ -110,14 +110,8 @@ in
       };
 
       agent = {
-        enabled = true;
-        button = true;
-      };
-
-      agent_servers = {
-        gemini = {
-          ignore_system_version = false;
-        };
+        enabled = false;
+        button = false;
       };
 
       theme = {

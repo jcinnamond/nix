@@ -21,6 +21,7 @@
         fixup = "commit --amend --no-edit";
       };
     };
+    signing.format = null;
     ignores = [
       "dist-newstyle"
     ];

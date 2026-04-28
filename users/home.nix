@@ -67,7 +67,6 @@ in
 
   imports = [
     ../programs/direnv
-    ../programs/firefox
     ../programs/git
     ../programs/helix
     ../programs/kitty

@@ -53,7 +53,6 @@ in
     signal-desktop
     simple-scan
     spotify
-    zathura
     zoom-us
     zotero
 

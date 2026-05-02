@@ -25,6 +25,10 @@
     };
 
     displayManager.defaultSession = "none+xmonad";
+    displayManager.autoLogin = {
+      enable = true;
+      user = "jc";
+    };
   };
 
   systemd.services.upower.enable = true;

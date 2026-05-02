@@ -31,6 +31,8 @@ in
     timg
     xsel
 
+    claude-code
+
     go
     gopls
     golangci-lint

@@ -85,7 +85,6 @@ in
         show_sign_in = false;
         show_user_picture = false;
         show_project_items = true;
-        show_branch_icon = false;
       };
       toolbar = {
         breadcrumbs = true;

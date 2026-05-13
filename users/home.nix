@@ -19,6 +19,7 @@ in
     bc
     btop
     dysk
+    esphome
     feh
     ffmpeg
     file

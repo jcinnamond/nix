@@ -11,6 +11,7 @@
       "scanner"
       "lp"
       "docker"
+      "dialout"
     ];
     shell = pkgs.zsh;
   };
